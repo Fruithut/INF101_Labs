@@ -17,6 +17,10 @@ public class Ball {
 	 */
 	private BallDemo demo;
 
+	/**
+	 * Number of steps taken
+	 */
+	private int steps = 0;
 
 	/**
 	 * Create a new ball with position and velocity (0,0)
@@ -117,6 +121,9 @@ public class Ball {
 	 */
 	public void step() {
 		// TODO
+
+		if(steps == 60)
+			demo.addExplosion(this);
 	}
 
 	/**
