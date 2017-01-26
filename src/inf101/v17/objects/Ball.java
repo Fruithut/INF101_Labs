@@ -160,7 +160,7 @@ public class Ball {
 		this.xPos += bounceX;
 		this.yPos += bounceY;
 
-		if (bounceX != 0 || bounceY != 0) {
+		if (bounceX != 0 && bounceY != 0) {
 			deltaX -= deltaX*2;
 			deltaY -= deltaY*2;
 		}
