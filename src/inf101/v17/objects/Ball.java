@@ -19,6 +19,9 @@ public class Ball {
 
 	private double xPos = 0.0, yPos = 0.0, deltaX = 0.0, deltaY = 0.0;
 
+    /**
+     * Number of steps taken
+     */
 	private int steps = 0;
 
 
@@ -110,22 +113,19 @@ public class Ball {
 	}
 
 	/**
-	 * @return Steps so far
-	 */
-	public int getSteps() {
-		return steps;
-	}
-
-	/**
 	 * Perform one time step.
 	 * 
 	 * For each time step, the ball's (xPos,yPos) position should change by
 	 * (deltaX,deltaY).
 	 */
 	public void step() {
-		steps++;
-		this.xPos += deltaX;
-		this.yPos += deltaY;
+        steps++;
+        this.xPos += deltaX;
+        this.yPos += deltaY;
+
+		if(steps == 60)
+			demo.addExplosion(this);
+
 	}
 
 	/**
