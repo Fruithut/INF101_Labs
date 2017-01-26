@@ -17,6 +17,8 @@ public class Ball {
 	 */
 	private BallDemo demo;
 
+	private double xPos = 0.0, yPos = 0.0, deltaX = 0.0, deltaY = 0.0;
+
 
 	/**
 	 * Create a new ball with position and velocity (0,0)
@@ -27,8 +29,7 @@ public class Ball {
 	 *            The radius
 	 */
 	public Ball(Paint color, double radius, BallDemo demo) {
-		if (radius < 0)
-			throw new IllegalArgumentException("Radius should not be negative");
+		if (radius < 0) throw new IllegalArgumentException("Radius should not be negative");
 		this.color = color;
 		this.radius = radius;
 		this.demo = demo;
@@ -46,39 +47,36 @@ public class Ball {
 	 *            New Y position
 	 */
 	public void moveTo(double newX, double newY) {
-		// TODO
+		this.xPos = newX;
+		this.yPos = newY;
 	}
 
 	/**
 	 * @return Current X position
 	 */
 	public double getX() {
-		// TODO
-		return 0;
+		return this.xPos;
 	}
 
 	/**
 	 * @return Current Y position
 	 */
 	public double getY() {
-		// TODO
-		return 0;
+		return this.yPos;
 	}
 
 	/**
 	 * @return Current X movement
 	 */
 	public double getDeltaX() {
-		// TODO
-		return 0;
+		return this.deltaX;
 	}
 
 	/**
 	 * @return Current Y movement
 	 */
 	public double getDeltaY() {
-		// TODO
-		return 0;
+		return this.deltaY;
 	}
 
 	/**
@@ -116,7 +114,8 @@ public class Ball {
 	 * (deltaX,deltaY).
 	 */
 	public void step() {
-		// TODO
+		this.xPos += deltaX;
+		this.yPos += deltaY;
 	}
 
 	/**
@@ -130,7 +129,8 @@ public class Ball {
 	 *            Change to deltaY
 	 */
 	public void accelerate(double ddx, double ddy) {
-		// TODO
+		this.deltaX += ddx;
+		this.deltaY += ddy;
 	}
 
 	/**
@@ -147,13 +147,21 @@ public class Ball {
 	 * @param bounceY Y-distance the ball needs to move in order to not overlap with the object it hit
 	 */
 	public void hit(double bounceX, double bounceY) {
-		// TODO
+		if (bounceX != 0 || bounceY != 0) {
+			this.xPos -= bounceX;
+			this.yPos -= bounceY;
+		}
+		else {
+			this.xPos += bounceX;
+			this.yPos += bounceY;
+		}
 	}
 
 	/**
 	 * Stop the ball. (Sets deltaX/deltaY to 0) 
 	 */
 	public void halt() {
-		// TODO
+		this.deltaX = 0.0;
+		this.deltaY = 0.0;
 	}
 }
