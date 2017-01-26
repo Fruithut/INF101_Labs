@@ -157,13 +157,18 @@ public class Ball {
 	 * @param bounceY Y-distance the ball needs to move in order to not overlap with the object it hit
 	 */
 	public void hit(double bounceX, double bounceY) {
+		this.xPos += bounceX;
+		this.yPos += bounceY;
+
 		if (bounceX != 0 || bounceY != 0) {
-			this.xPos -= bounceX;
-			this.yPos -= bounceY;
+			deltaX -= deltaX*2;
+			deltaY -= deltaY*2;
 		}
-		else {
-			this.xPos += bounceX;
-			this.yPos += bounceY;
+		else if (bounceX != 0) {
+			deltaX -= deltaX*2;
+		}
+		else if (bounceY != 0) {
+			deltaY -= deltaY*2;
 		}
 	}
 
