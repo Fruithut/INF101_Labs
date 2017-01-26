@@ -130,9 +130,6 @@ public class BallDemo extends Application {
 			}
 			b.step();
 
-			//Added use of explosion method
-			if (b.getSteps() > 50) {addExplosion(b);}
-
 			double bounceX = 0.0, bounceY = 0.0;
 			if (b.getX() + b.getWidth() / 2 <= 0.0) {
 				balls.remove(b);
