@@ -148,7 +148,7 @@ public class BallDemo extends Application {
 			} else if (b.getY() + b.getHeight() / 2 >= canvas.getHeight()) {
 				bounceY = canvas.getHeight() - (b.getY() + b.getHeight() / 2);
 			}
-			if (bounceY != 0.0) {
+			if (bounceY != 0.0 || bounceX != 0.0) {
 				if (random.nextInt(1) == 0) { //Math.abs(bounceY) < 0.1) {
 					balls.remove(b);
 					if (b.getRadius() > 8.0) {
