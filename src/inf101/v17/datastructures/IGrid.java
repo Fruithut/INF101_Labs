@@ -1,4 +1,4 @@
-package inf101.v16.datastructures;
+package inf101.v17.datastructures;
 
 
 public interface IGrid<T> {

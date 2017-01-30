@@ -1,6 +1,4 @@
-package inf101.v16.cell.gui;
-
-import inf101.v16.cell.ICellAutomaton;
+package inf101.v17.cell.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -10,6 +8,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import inf101.v17.cell.ICellAutomaton;
 
 /**
  * 

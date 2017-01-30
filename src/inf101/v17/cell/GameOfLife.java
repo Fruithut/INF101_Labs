@@ -1,40 +1,41 @@
-package inf101.v16.cell;
-
-import inf101.v16.datastructures.MyGrid;
-import inf101.v16.datastructures.IGrid;
+package inf101.v17.cell;
 
 import java.awt.Color;
 import java.util.Random;
 
+import inf101.v17.datastructures.IGrid;
+import inf101.v17.datastructures.MyGrid;
+
 /**
  * 
- * An ICellAutomata that implements the Seeds Cellular Automaton.
+ * An ICellAutomata that implements Conways game of life.
  * 
  * @see ICellAutomata
  * 
  *      Every cell has two states: Alive or Dead. Each step the state of each
  *      cell is decided from its neighbors (diagonal, horizontal and lateral).
- *      If a dead cell has exactly two alive neighbors then it becomes alive,
- *      otherwise it dies.
+ *      If the cell has less than two alive Neighbors or more than three
+ *      neighbors the cell dies. If a dead cell has exactly three neighbors it
+ *      will become alive.
  * 
  * @author eivind
  */
-public class SeedsAutomaton implements ICellAutomaton {
+public class GameOfLife implements ICellAutomaton {
 
 	/**
-	 * The grid containing the current generation.
+	 * The grid the game is played in.
 	 */
 	IGrid<CellState> currentGeneration;
 
 	/**
 	 * 
-	 * Construct a Seeds ICellAutomaton using a grid with the given height and
-	 * width.
+	 * Construct a GameOfLife ICellAutomaton using a grid with the given height
+	 * and width.
 	 * 
 	 * @param height
 	 * @param width
 	 */
-	public SeedsAutomaton(int width, int height) {
+	public GameOfLife(int width, int height) {
 		currentGeneration = new MyGrid<CellState>(width, height,
 				CellState.DEAD);
 	}
@@ -76,7 +77,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	public void stepAutomaton() {
 
 		IGrid<CellState> nextGeneration = new MyGrid<CellState>(
-				currentGeneration.getHeight(), currentGeneration.getWidth(),
+				currentGeneration.getWidth(), currentGeneration.getHeight(),
 				CellState.ALIVE);
 
 		for (int x = 0; x < currentGeneration.getWidth(); x++) {
@@ -94,19 +95,26 @@ public class SeedsAutomaton implements ICellAutomaton {
 							continue; // utenfor brettet
 						if (x + dx >= currentGeneration.getWidth())
 							continue; // utenfor brettet
+						
+						// tell levende naboer
 						if (currentGeneration.get(x + dx, y + dy) == CellState.ALIVE) {
 							numNeighbours++;
 						}
 					}
 				}
-				if (numNeighbours == 2) {
-					nextGeneration.set(x, y, CellState.ALIVE);
-				} else {
+				if (numNeighbours < 2) {
 					nextGeneration.set(x, y, CellState.DEAD);
+				} else if (numNeighbours == 3) {
+					nextGeneration.set(x, y, CellState.ALIVE);
+				} else if (numNeighbours > 3) {
+					nextGeneration.set(x, y, CellState.DEAD);
+				} else {
+					nextGeneration.set(x, y, currentGeneration.get(x, y));
 				}
 			}
 		}
 
 		currentGeneration = nextGeneration;
+
 	}
 }

@@ -1,6 +1,6 @@
-package inf101.v16.cell;
+package inf101.v17.cell;
 
-import inf101.v16.cell.gui.CellAutomataGUI;
+import inf101.v17.cell.gui.CellAutomataGUI;
 
 public class Main {
 

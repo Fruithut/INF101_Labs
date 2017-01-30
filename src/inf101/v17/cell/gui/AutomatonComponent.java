@@ -1,11 +1,11 @@
-package inf101.v16.cell.gui;
+package inf101.v17.cell.gui;
 
-
-import inf101.v16.cell.ICellAutomaton;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
+
+import inf101.v17.cell.ICellAutomaton;
 
 /**
  * 
