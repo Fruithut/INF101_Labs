@@ -25,7 +25,7 @@ public class GameOfLife implements ICellAutomaton {
 	/**
 	 * The grid the game is played in.
 	 */
-	IGrid<CellState> currentGeneration;
+	IGrid currentGeneration;
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class GameOfLife implements ICellAutomaton {
 	 * @param width
 	 */
 	public GameOfLife(int width, int height) {
-		currentGeneration = new MyGrid<CellState>(width, height,
+		currentGeneration = new MyGrid(width, height,
 				CellState.DEAD);
 	}
 
@@ -76,7 +76,7 @@ public class GameOfLife implements ICellAutomaton {
 	@Override
 	public void stepAutomaton() {
 
-		IGrid<CellState> nextGeneration = new MyGrid<CellState>(
+		IGrid nextGeneration = new MyGrid(
 				currentGeneration.getWidth(), currentGeneration.getHeight(),
 				CellState.ALIVE);
 

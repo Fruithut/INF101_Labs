@@ -1,7 +1,9 @@
 package inf101.v17.datastructures;
 
+import inf101.v17.cell.CellState;
 
-public interface IGrid<T> {
+
+public interface IGrid {
 
 	/**
 	 * @return The height of the grid.
@@ -24,7 +26,7 @@ public interface IGrid<T> {
 	 * @param y The row of the cell to change the contents of.
 	 * @param element The contents the cell is to have.
 	 */
-	void set(int x, int y, T element);
+	void set(int x, int y, CellState element);
 
 	/**
 	 * 
@@ -36,13 +38,13 @@ public interface IGrid<T> {
 	 * @param x The column of the cell to get the contents of.
 	 * @param y The row of the cell to get contents of.
 	 */
-	T get(int x, int y);
+	CellState get(int x, int y);
 
 	/**
 	 * Make a copy
 	 *
 	 * @return A fresh copy of the grid, with the same elements
 	 */
-	IGrid<T> copy();
+	IGrid copy();
 
 }

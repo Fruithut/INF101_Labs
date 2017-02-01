@@ -2,14 +2,16 @@ package inf101.v17.datastructures;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Random;
+
+import inf101.v17.cell.CellState;
+
+
 public class MyListTest {
-	Random random = new Random();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -18,31 +20,19 @@ public class MyListTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test
-	public void addGetTest() {
-		IList<Integer> list = new MyList<>();
-		
-		for(int i = 0; i < 100; i++)
-			list.add(i);
-		
-		for(int i = 0; i < 100; i++)
-			assertEquals(i, (int)list.get(i));
-		
-		assertEquals(100, list.size());
-	}
 	
 	@Test
 	public void setGetTest() {
-		IList<Integer> list = new MyList<>();
+		IList list = new MyList();
+		Random rand = new Random();
 		
 		for(int i = 0; i < 1000; i++)
-			list.add(random.nextInt());
+			list.add(CellState.random(rand));
 		
 		for(int i = 0; i < 1000; i++) {
-			int element = random.nextInt();
+			CellState element = CellState.random(rand);
 			list.set(i, element);
-			assertEquals(element, (int)list.get(i));
+			assertEquals(element, list.get(i));
 		}
 	}
 }

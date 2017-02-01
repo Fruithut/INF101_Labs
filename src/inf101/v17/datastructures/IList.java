@@ -1,6 +1,8 @@
 package inf101.v17.datastructures;
 
-public interface IList<T> {
+import inf101.v17.cell.CellState;
+
+public interface IList {
 	/**
 	 * Legg til et element på slutten av listen.
 	 * 
@@ -8,7 +10,7 @@ public interface IList<T> {
 	 * 
 	 * Etterpå vil size() øke med én, og get(size()-1) vil returnere elementet.
 	 */
-	void add(T s);
+	void add(CellState s);
 	
 	/**
 	 * Fjern et element fra listen
@@ -18,14 +20,14 @@ public interface IList<T> {
 	 * 
 	 * Etterpå vil alle senere indekser i listen flyttes én posisjon frem.
 	 */
-	T remove(int i);
+	CellState remove(int i);
 	
 	/**
 	 * Returner elementet på posisjon i
 	 * @param i
 	 * @return
 	 */
-	T get(int i);
+	CellState get(int i);
 	
 	/**
 	 * @return True hvis listen er tom
@@ -45,7 +47,7 @@ public interface IList<T> {
 	 * 
 	 * Etterpå vil get(i) == s
 	 */
-	void set(int i, T s);
+	void set(int i, CellState s);
 
 	/**
 	 * Fjern alle elementer fra listen.

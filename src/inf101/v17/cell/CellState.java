@@ -1,5 +1,7 @@
 package inf101.v17.cell;
 
+import java.util.Random;
+
 /**
  * 
  * The State of a cell
@@ -7,5 +9,10 @@ package inf101.v17.cell;
 public enum CellState {
 	ALIVE,
 	DYING,
-	DEAD
+	DEAD;
+	
+	public static CellState random(Random rand){
+		return CellState.values()[rand.nextInt(3)];
+	}
 }
+

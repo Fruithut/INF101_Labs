@@ -24,7 +24,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	/**
 	 * The grid containing the current generation.
 	 */
-	IGrid<CellState> currentGeneration;
+	IGrid currentGeneration;
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	 * @param width
 	 */
 	public SeedsAutomaton(int width, int height) {
-		currentGeneration = new MyGrid<CellState>(width, height,
+		currentGeneration = new MyGrid(width, height,
 				CellState.DEAD);
 	}
 
@@ -75,7 +75,7 @@ public class SeedsAutomaton implements ICellAutomaton {
 	@Override
 	public void stepAutomaton() {
 
-		IGrid<CellState> nextGeneration = new MyGrid<CellState>(
+		IGrid nextGeneration = new MyGrid(
 				currentGeneration.getHeight(), currentGeneration.getWidth(),
 				CellState.ALIVE);
 

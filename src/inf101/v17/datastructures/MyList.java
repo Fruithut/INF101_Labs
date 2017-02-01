@@ -1,25 +1,26 @@
 package inf101.v17.datastructures;
 
 import java.util.Arrays;
+import inf101.v17.cell.CellState;
 
-public class MyList<T> implements IList<T> {
+public class MyList implements IList {
 	private int length;
-	private T[] data;
+	private CellState[] data;
 
 	public MyList() {
 		length = 0;
-		data = (T[]) new Object[10];
+		data = new CellState[10];
 	}
 
 	public MyList(int initialSize) {
 		if(initialSize < 0)
 			throw new IllegalArgumentException("initialSize must be positive: " + initialSize);
 		length = 0;
-		data = (T[]) new Object[initialSize];
+		data =  new CellState[initialSize];
 	}
 
 	@Override
-	public void add(T s) {
+	public void add(CellState s) {
 		if (length == data.length) {
 			data = Arrays.copyOf(data, data.length * 2);
 		}
@@ -29,8 +30,8 @@ public class MyList<T> implements IList<T> {
 	}
 
 	@Override
-	public T remove(int i) {
-		T element = data[i];
+	public CellState remove(int i) {
+		CellState element = data[i];
 
 		for (int x = i; x < length - 1; x++) {
 			data[x] = data[x + 1];
@@ -41,7 +42,7 @@ public class MyList<T> implements IList<T> {
 	}
 
 	@Override
-	public T get(int i) {
+	public CellState get(int i) {
 		return data[i];
 	}
 
@@ -56,7 +57,7 @@ public class MyList<T> implements IList<T> {
 	}
 
 	@Override
-	public void set(int i, T s) {
+	public void set(int i, CellState s) {
 		data[i] = s;
 	}
 
