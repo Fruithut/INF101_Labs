@@ -81,4 +81,35 @@ public class GridTest {
 			}
 		}
 	}
+
+	/**
+	 * Test for height
+	 */
+	@Test
+	public void getHeightTest() {
+		IGrid grid = new MyGrid(50,50, CellState.DEAD);
+		assertEquals(50, grid.getHeight());
+	}
+
+	/**
+	 * Test for width
+	 */
+	@Test
+	public void getWidthTest() {
+		IGrid grid = new MyGrid(60,60, CellState.DEAD);
+		assertEquals(60, grid.getWidth());
+	}
+
+	/**
+	 * Test for a grid size of 0,0.
+	 */
+	@Test
+	public void gridSizeTest1() {
+		try {
+			IGrid grid = new MyGrid(0,0, CellState.DEAD);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Decide between returning with error message or setting grid to minimum values");
+		}
+	}
 }

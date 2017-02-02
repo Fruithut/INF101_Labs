@@ -36,13 +36,13 @@ public class MyGrid implements IGrid {
 	
 	@Override
 	public int getHeight() {
-		return 0; // TODO: fyll inn
+		return height;
 	}
 
 
 	@Override
 	public int getWidth() {
-		return 0; // TODO: fyll inn
+		return width;
 	}
 
 
@@ -53,7 +53,7 @@ public class MyGrid implements IGrid {
 		if(y < 0 || y >= height)
 			throw new IndexOutOfBoundsException();
 
-		// TODO: fyll inn
+		cells.set((x + width * y), elem);
 	}
 
 	
@@ -64,7 +64,7 @@ public class MyGrid implements IGrid {
 		if(y < 0 || y >= height)
 			throw new IndexOutOfBoundsException();
 
-		return null; // TODO: fyll inn
+		return cells.get((x + width * y));
 	}
 
 	@Override
