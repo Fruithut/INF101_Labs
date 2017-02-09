@@ -13,7 +13,7 @@ public class GridTest {
 
 	@Test
 	public void copyTest() {
-		IGrid grid = new MyGrid(100, 100, CellState.DEAD);
+		IGrid<CellState> grid = new MyGrid<>(100, 100, CellState.DEAD);
 
 		for (int x = 0; x < 100; x++) {
 			for (int y = 0; y < 100; y++) {
@@ -22,7 +22,7 @@ public class GridTest {
 			}
 		}
 
-		IGrid newGrid = grid.copy();
+		IGrid<CellState> newGrid = grid.copy();
 		for (int x = 0; x < 100; x++) {
 			for (int y = 0; y < 100; y++) {
 				assertEquals(grid.get(x, y), newGrid.get(x, y));
@@ -36,7 +36,7 @@ public class GridTest {
 	 */
 	@Test
 	public void outOfBoundsTest() {
-		IGrid grid = new MyGrid(10, 10, CellState.DEAD);
+		IGrid<CellState> grid = new MyGrid<>(10, 10, CellState.DEAD);
 
 		try {
 			grid.set(11, 0, CellState.DEAD);
@@ -54,7 +54,7 @@ public class GridTest {
 
 	@Test
 	public void setGetTest1() {
-		IGrid grid = new MyGrid(100, 100, CellState.DEAD);
+		IGrid<CellState> grid = new MyGrid<>(100, 100, CellState.DEAD);
 
 		for (int x = 0; x < 100; x++)
 			for (int y = 0; y < 100; y++) {
@@ -66,7 +66,7 @@ public class GridTest {
 
 	@Test
 	public void setGetTest2() {
-		IGrid grid = new MyGrid(100, 100, CellState.DEAD);
+		IGrid<CellState> grid = new MyGrid<>(100, 100, CellState.DEAD);
 
 		for (int x = 0; x < 100; x++) {
 			for (int y = 0; y < 100; y++) {

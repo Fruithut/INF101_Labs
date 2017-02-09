@@ -10,7 +10,7 @@ import inf101.v17.datastructures.MyGrid;
  * 
  * An ICellAutomata that implements Conways game of life.
  * 
- * @see ICellAutomata
+ * @see ICellAutomaton
  * 
  *      Every cell has two states: Alive or Dead. Each step the state of each
  *      cell is decided from its neighbors (diagonal, horizontal and lateral).
@@ -25,7 +25,7 @@ public class GameOfLife implements ICellAutomaton {
 	/**
 	 * The grid the game is played in.
 	 */
-	IGrid currentGeneration;
+	private IGrid<CellState> currentGeneration;
 
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class GameOfLife implements ICellAutomaton {
 	 * @param width
 	 */
 	public GameOfLife(int width, int height) {
-		currentGeneration = new MyGrid(width, height, CellState.DEAD);
+		currentGeneration = new MyGrid<>(width, height, CellState.DEAD);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class GameOfLife implements ICellAutomaton {
 	@Override
 	public void stepAutomaton() {
 
-		IGrid nextGeneration = new MyGrid(currentGeneration.getWidth(), currentGeneration.getHeight(), CellState.ALIVE);
+		IGrid<CellState> nextGeneration = new MyGrid<>(currentGeneration.getWidth(), currentGeneration.getHeight(), CellState.ALIVE);
 
 		for (int x = 0; x < currentGeneration.getWidth(); x++) {
 			for (int y = 0; y < currentGeneration.getHeight(); y++) {

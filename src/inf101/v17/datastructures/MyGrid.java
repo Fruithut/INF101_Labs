@@ -1,14 +1,14 @@
 package inf101.v17.datastructures;
 
-import inf101.v17.cell.CellState;
+import java.util.ArrayList;
 
 /**
  * 
  * A Grid contains a set of cells in a square 2D matrix.
  *
  */
-public class MyGrid implements IGrid {
-	private IList<CellState> cells;
+public class MyGrid<T> implements IGrid<T> {
+	private IList<T> cells;
 	private int height;
 	private int width;
 
@@ -21,7 +21,8 @@ public class MyGrid implements IGrid {
 	 * @param initElement
 	 *            What the cells should initially hold (possibly null)
 	 */
-	public MyGrid(int width, int height, CellState initElement) {
+	public MyGrid(int width, int height, T initElement) {
+		ArrayList<Integer> x = new ArrayList<>();
 		if (width <= 0 || height <= 0)
 			throw new IllegalArgumentException();
 
@@ -34,15 +35,15 @@ public class MyGrid implements IGrid {
 	}
 
 	@Override
-	public void clear(CellState value) {
+	public void clear(T value) {
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
 				set(x, y, value);
 	}
 
 	@Override
-	public IGrid copy() {
-		MyGrid newGrid = new MyGrid(getWidth(), getHeight(), null);
+	public IGrid<T> copy() {
+		MyGrid<T> newGrid = new MyGrid<>(getWidth(), getHeight(), null);
 
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++)
@@ -51,7 +52,7 @@ public class MyGrid implements IGrid {
 	}
 
 	@Override
-	public CellState get(int x, int y) {
+	public T get(int x, int y) {
 		if (x < 0 || x >= width)
 			throw new IndexOutOfBoundsException();
 		if (y < 0 || y >= height)
@@ -71,7 +72,7 @@ public class MyGrid implements IGrid {
 	}
 
 	@Override
-	public void set(int x, int y, CellState elem) {
+	public void set(int x, int y, T elem) {
 		if (x < 0 || x >= width)
 			throw new IndexOutOfBoundsException();
 		if (y < 0 || y >= height)
