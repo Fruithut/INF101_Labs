@@ -1,26 +1,27 @@
 package inf101.v17.datastructures;
 
 import java.util.Arrays;
-import inf101.v17.cell.CellState;
 
-public class MyList implements IList {
+public class MyList<T> implements IList<T> {
 	private int length;
-	private CellState[] data;
+	private T[] data;
 
+	@SuppressWarnings("unchecked")
 	public MyList() {
 		length = 0;
-		data = new CellState[10];
+		data = (T[]) new Object[10];
 	}
 
+	@SuppressWarnings("unchecked")
 	public MyList(int initialSize) {
-		if(initialSize < 0)
+		if (initialSize < 0)
 			throw new IllegalArgumentException("initialSize must be positive: " + initialSize);
 		length = 0;
-		data =  new CellState[initialSize];
+		data = (T[]) new Object[initialSize];
 	}
 
 	@Override
-	public void add(CellState s) {
+	public void add(T s) {
 		if (length == data.length) {
 			data = Arrays.copyOf(data, data.length * 2);
 		}
@@ -30,8 +31,23 @@ public class MyList implements IList {
 	}
 
 	@Override
-	public CellState remove(int i) {
-		CellState element = data[i];
+	public void clear() {
+		length = 0;
+	}
+
+	@Override
+	public T get(int i) {
+		return data[i];
+	}
+
+	@Override
+	public boolean isEmpty() {
+		return length == 0;
+	}
+
+	@Override
+	public T remove(int i) {
+		T element = data[i];
 
 		for (int x = i; x < length - 1; x++) {
 			data[x] = data[x + 1];
@@ -42,28 +58,13 @@ public class MyList implements IList {
 	}
 
 	@Override
-	public CellState get(int i) {
-		return data[i];
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return length == 0;
+	public void set(int i, T s) {
+		data[i] = s;
 	}
 
 	@Override
 	public int size() {
 		return length;
-	}
-
-	@Override
-	public void set(int i, CellState s) {
-		data[i] = s;
-	}
-
-	@Override
-	public void clear() {
-		length = 0;
 	}
 
 }

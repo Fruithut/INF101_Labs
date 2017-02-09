@@ -36,8 +36,26 @@ public class GameOfLife implements ICellAutomaton {
 	 * @param width
 	 */
 	public GameOfLife(int width, int height) {
-		currentGeneration = new MyGrid(width, height,
-				CellState.DEAD);
+		currentGeneration = new MyGrid(width, height, CellState.DEAD);
+	}
+
+	@Override
+	public Color getColorInCurrentGeneration(int x, int y) {
+		if (currentGeneration.get(x, y) == CellState.ALIVE) {
+			return Color.black;
+		} else {
+			return Color.white;
+		}
+	}
+
+	@Override
+	public int getHeight() {
+		return currentGeneration.getHeight();
+	}
+
+	@Override
+	public int getWidth() {
+		return currentGeneration.getWidth();
 	}
 
 	@Override
@@ -55,30 +73,9 @@ public class GameOfLife implements ICellAutomaton {
 	}
 
 	@Override
-	public int getHeight() {
-		return currentGeneration.getHeight();
-	}
-
-	@Override
-	public int getWidth() {
-		return currentGeneration.getWidth();
-	}
-
-	@Override
-	public Color getColorInCurrentGeneration(int x, int y) {
-		if (currentGeneration.get(x, y) == CellState.ALIVE) {
-			return Color.black;
-		} else {
-			return Color.white;
-		}
-	}
-
-	@Override
 	public void stepAutomaton() {
 
-		IGrid nextGeneration = new MyGrid(
-				currentGeneration.getWidth(), currentGeneration.getHeight(),
-				CellState.ALIVE);
+		IGrid nextGeneration = new MyGrid(currentGeneration.getWidth(), currentGeneration.getHeight(), CellState.ALIVE);
 
 		for (int x = 0; x < currentGeneration.getWidth(); x++) {
 			for (int y = 0; y < currentGeneration.getHeight(); y++) {
@@ -95,7 +92,7 @@ public class GameOfLife implements ICellAutomaton {
 							continue; // utenfor brettet
 						if (x + dx >= currentGeneration.getWidth())
 							continue; // utenfor brettet
-						
+
 						// tell levende naboer
 						if (currentGeneration.get(x + dx, y + dy) == CellState.ALIVE) {
 							numNeighbours++;

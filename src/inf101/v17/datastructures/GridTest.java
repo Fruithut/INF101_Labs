@@ -11,6 +11,25 @@ import inf101.v17.cell.CellState;
 public class GridTest {
 	Random random = new Random();
 
+	@Test
+	public void copyTest() {
+		IGrid grid = new MyGrid(100, 100, CellState.DEAD);
+
+		for (int x = 0; x < 100; x++) {
+			for (int y = 0; y < 100; y++) {
+				CellState cs = CellState.random(random);
+				grid.set(x, y, cs);
+			}
+		}
+
+		IGrid newGrid = grid.copy();
+		for (int x = 0; x < 100; x++) {
+			for (int y = 0; y < 100; y++) {
+				assertEquals(grid.get(x, y), newGrid.get(x, y));
+			}
+		}
+	}
+
 	/**
 	 * Tests that trying to access outside of the dimensions of the grid throws
 	 * an IndexOutOfBoundsException.
@@ -61,24 +80,5 @@ public class GridTest {
 				grid.set(x, y, cs);
 				assertEquals(cs, grid.get(x, y));
 			}
-	}
-
-	@Test
-	public void copyTest() {
-		IGrid grid = new MyGrid(100, 100, CellState.DEAD);
-
-		for (int x = 0; x < 100; x++) {
-			for (int y = 0; y < 100; y++) {
-				CellState cs = CellState.random(random);
-				grid.set(x, y, cs);
-			}
-		}
-
-		IGrid newGrid = grid.copy();
-		for (int x = 0; x < 100; x++) {
-			for (int y = 0; y < 100; y++) {
-				assertEquals(grid.get(x, y), newGrid.get(x, y));
-			}
-		}
 	}
 }

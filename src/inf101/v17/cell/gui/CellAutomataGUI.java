@@ -21,18 +21,65 @@ public class CellAutomataGUI extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 8755882090377973497L;
 
+	/**
+	 * 
+	 * Initializes a JFrame in which we place the a CellAutomataGUI containing
+	 * the given ICellAutomaton.
+	 * 
+	 * @param ca
+	 */
+	public static void run(ICellAutomaton ca) {
+		JFrame f = new JFrame("Inf101 Cell Automaton");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		CellAutomataGUI ap = new CellAutomataGUI(ca);
+		ap.initialize();
+		f.add("Center", ap);
+		f.pack();
+		f.setVisible(true);
+	}
+
 	AutomatonComponent automatonComponent;
 	ICellAutomaton automaton;
-	private javax.swing.Timer timer;
 
+	private javax.swing.Timer timer;
 	private JButton startButton;
 	private JButton stopButton;
+
 	private JButton stepButton;
 
 	private JButton setBoardButton;
 
 	public CellAutomataGUI(ICellAutomaton automata) {
 		this.automaton = automata;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * 
+	 * Called whenever a button is pressed or the timer tells us its time to
+	 * make a step.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == timer) {
+			timer.restart();
+			automaton.stepAutomaton();
+			automatonComponent.repaint();
+		} else if (e.getSource() == startButton) {
+			timer.start();
+		} else if (e.getSource() == stopButton) {
+			timer.stop();
+		} else if (e.getSource() == stepButton) {
+			timer.stop();
+			automaton.stepAutomaton();
+			automatonComponent.repaint();
+		} else if (e.getSource() == setBoardButton) {
+			automaton.initializeGeneration();
+			automatonComponent.repaint();
+		}
 	}
 
 	/**
@@ -69,52 +116,6 @@ public class CellAutomataGUI extends JPanel implements ActionListener {
 		add(p, BorderLayout.NORTH);
 		add(automatonComponent, BorderLayout.CENTER);
 
-		timer = new javax.swing.Timer(1000/20, this);
-	}
-
-	/**
-	 * 
-	 * Initializes a JFrame in which we place the a CellAutomataGUI containing
-	 * the given ICellAutomaton.
-	 * 
-	 * @param ca
-	 */
-	public static void run(ICellAutomaton ca) {
-		JFrame f = new JFrame("Inf101 Cell Automaton");
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		CellAutomataGUI ap = new CellAutomataGUI(ca);
-		ap.initialize();
-		f.add("Center", (Component) ap);
-		f.pack();
-		f.setVisible(true);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 * 
-	 * Called whenever a button is pressed or the timer tells us its time to
-	 * make a step.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == timer) {
-			timer.restart();
-			automaton.stepAutomaton();
-			automatonComponent.repaint();
-		} else if (e.getSource() == startButton) {
-			timer.start();
-		} else if (e.getSource() == stopButton) {
-			timer.stop();
-		} else if (e.getSource() == stepButton) {
-			timer.stop();
-			automaton.stepAutomaton();
-			automatonComponent.repaint();
-		} else if (e.getSource() == setBoardButton) {
-			automaton.initializeGeneration();
-			automatonComponent.repaint();
-		}
+		timer = new javax.swing.Timer(1000 / 20, this);
 	}
 }
