@@ -77,7 +77,7 @@ public class Labyrinth implements ILabyrinth {
 
     @Override
     public void movePlayer(Direction dir) throws MovePlayerException {
-        if (playerCanGo(dir)) {
+       if (playerCanGo(dir)) {
             switch (dir) {
                 case NORTH: if (tiles.get(xPlayer,yPlayer+1).equals(LabyrinthTile.GOLD)) {playerGold++;}
                             tiles.set(xPlayer ,yPlayer+1, LabyrinthTile.PLAYER);
@@ -100,8 +100,8 @@ public class Labyrinth implements ILabyrinth {
                             this.yPlayer = yPlayer-1;
                             break;
             }
-        }
-
+           throw new MovePlayerException("Not a valid move!");
+       }
     }
 
     @Override
