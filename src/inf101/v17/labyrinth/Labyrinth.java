@@ -100,6 +100,7 @@ public class Labyrinth implements ILabyrinth {
                             this.yPlayer = yPlayer-1;
                             break;
             }
+       } else {
            throw new MovePlayerException("Not a valid move!");
        }
     }
