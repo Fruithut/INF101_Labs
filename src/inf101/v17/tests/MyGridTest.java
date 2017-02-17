@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyGridTest {
-	private static final int N = 1000000;
+	private static final int N = 1000000/100;
 
 	private IGenerator<String> strGen = new StringGenerator();
 	private IGenerator<IGrid<String>> gridGen = new MyGridGenerator<String>(strGen);
@@ -130,7 +130,7 @@ public class MyGridTest {
 	}
 
 	@Test
-	public void stringTransitiveTest() {
+	public void gridTransitiveTest() {
 		IGrid one, two, three;
 		for (int i = 0; i < N; i++) {
 			one = gridGen.generate();
@@ -141,7 +141,7 @@ public class MyGridTest {
 	}
 
 	@Test
-	public void stringTransitiveStringTest2() {
+	public void gridTransitiveStringTest2() {
 		for (int i = 0; i < N; i++) {
 			List<IGrid<String>> rand = gridGen.generateEquals(3);
 			transitiveProperty(rand.get(0),rand.get(1), rand.get(2));
@@ -149,14 +149,14 @@ public class MyGridTest {
 	}
 
 	@Test
-	public void stringReflexiveTest() {
+	public void gridReflexiveTest() {
 		for (int i = 0; i < N; i++) {
 			reflexiveProperty(gridGen.generate());
 		}
 	}
 
 	@Test
-	public void stringSymmetricTest() {
+	public void gridSymmetricTest() {
 		IGrid one, two;
 		for (int i = 0; i < N; i++) {
 			one = gridGen.generate();
@@ -166,7 +166,7 @@ public class MyGridTest {
 	}
 
 	@Test
-	public void stringHashTest() {
+	public void gridHashTest() {
 		IGrid one, two;
 		for (int i = 0; i < N; i++) {
 			one = gridGen.generate();
