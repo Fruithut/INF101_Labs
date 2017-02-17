@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MyGridTest {
-	private static final int N = 1000000/100;
+	private static final int N = 1000000/1000;
 
 	private IGenerator<String> strGen = new StringGenerator();
 	private IGenerator<IGrid<String>> gridGen = new MyGridGenerator<String>(strGen);
