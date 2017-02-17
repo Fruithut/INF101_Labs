@@ -1,7 +1,6 @@
 package inf101.v17.util.generators;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
@@ -52,8 +51,15 @@ public class MyGridGenerator<T> implements IGenerator<IGrid<T>> {
 		//
 		// Viktig: sende med argumentet 'r' når du kaller generate på subgeneratorene
 		// fra denne metoden.
-		
-		return null;
+
+		IGrid<T> rand = new MyGrid<>(widthGenerator.generate(r), heightGenerator.generate(r), null);
+		for (int i = 0; i < rand.getWidth(); i++) {
+			for (int j = 0; j < rand.getHeight(); j++) {
+				rand.set(i,j,elementGenerator.generate(r));
+			}
+		}
+
+		return rand;
 	}
 
 	@Override

@@ -37,13 +37,13 @@ public class MyGrid<T> implements IGrid<T> {
 	
 	@Override
 	public int getHeight() {
-		return width;
+		return height;
 		}
 
 
 	@Override
 	public int getWidth() {
-		return height;
+		return width;
 	}
 
 
@@ -65,7 +65,7 @@ public class MyGrid<T> implements IGrid<T> {
 		if(y < 0 || y >= height)
 			throw new IndexOutOfBoundsException();
 
-		return cells.get(y + (x * width));
+		return cells.get(x + (y * width));
 	}
 
 	@Override
@@ -78,4 +78,23 @@ public class MyGrid<T> implements IGrid<T> {
 		return newGrid;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		MyGrid<?> myGrid = (MyGrid<?>) o;
+
+		if (height != myGrid.height) return false;
+		if (width != myGrid.width) return false;
+		return cells != null ? cells.equals(myGrid.cells) : myGrid.cells == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = cells != null ? cells.hashCode() : 0;
+		result = 31 * result + height;
+		result = 31 * result + width;
+		return result;
+	}
 }
