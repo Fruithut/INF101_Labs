@@ -122,6 +122,13 @@ Arv gjør at vi kan bygge en ny klasse *B* på en eksisterende klasse *A*. Hvis 
 * Konstruktøren til B må kalle konstruktøren til A aller først. Dette er nødvendig fordi alle B-objekter også har feltvariablene til A, og de må settes opp i henhold til A.
 * Alle B-objekter er kompatible med typen A, dvs. at du kan bruke dem i variabler med typen A.
 
+## Steg 2.5: Testing
+
+Du bør lage litt tester underveis. Til denne typen oppgave passer det med eksempelbaserte tester, f.eks.:
+
+* Lag en Pond med en and.
+* Kjør Pond.step().
+* Sjekk at andens posisjon har endret seg i tråd med hva du forventer. (F.eks. du kan ha en mor og en andunge i en dam,  la moren stå i ro (ikke kalle swim()), og sjekke at avstanden mellom dem minker)
 
 ## Steg 3: Fikse Duck
 
