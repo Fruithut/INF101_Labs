@@ -1,9 +1,6 @@
 package inf101.v17.pond;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -11,14 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.Paint;
-import javafx.scene.paint.RadialGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -89,17 +79,17 @@ public class DuckDemo extends Application {
 		pond = new Pond(NOMINAL_WIDTH, NOMINAL_HEIGHT);
 
 		// female duck
-		Duck duck = new Duck(Gender.FEMALE, false, randomPos(), new Direction(-1, 0), pond);
+		Duck duck = new FemaleDuck(randomPos(), new Direction(-1, 0), pond);
 		duck.swim();
 		pond.addObject(duck);
 		
 		// male duck
-		duck = new Duck(Gender.MALE, false, randomPos(), new Direction(1, 0), pond);
+		duck = new MaleDuck(randomPos(), new Direction(1, 0), pond);
 		duck.swim();
 		pond.addObject(duck);
 		
 		// duckling
-		duck = new Duck(Gender.MALE, true, randomPos(), new Direction(1, 0), pond);
+		duck = new Duckling(randomPos(), new Direction(1, 0), pond);
 		duck.swim();
 		pond.addObject(duck);
 		pond.addObject(new Fish());

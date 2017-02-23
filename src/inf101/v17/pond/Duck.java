@@ -1,6 +1,5 @@
 package inf101.v17.pond;
 
-import java.util.List;
 import java.util.Random;
 
 import javafx.scene.canvas.GraphicsContext;
@@ -9,48 +8,20 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcType;
 
 public class Duck implements IPondObject {
-	public static final int YOUNG = 0;
-	public static final int ADULT = 1;
 	public static final Random random = new Random();
 
-	private double size;
-	private int age;
-	private Gender gender;
-	private double speed;
-	private Position pos = new Position(1600, 500);
-	private Direction direction = new Direction(-1.0, 0.0);
-	private boolean swimming = false;
-	private Pond pond;
+	protected Pond pond;
+	protected Paint bodyColor, headColor, billColor;
+	protected double size, speed;
+	protected boolean swimming = false;
+	protected Position pos = new Position(1600, 500);
+	protected Direction direction = new Direction(-1.0, 0.0);
 
-	public Duck(Gender gender, boolean duckling, Position pos, Direction dir, Pond pond) {
-		this.gender = gender;
+
+	public Duck(Position pos, Direction dir, Pond pond) {
 		this.pond = pond;
-		if (duckling) {
-			this.age = YOUNG;
-			this.size = 0.4;
-			speed = 0.5;
-		} else {
-			age = ADULT;
-
-			if (gender == Gender.MALE) {
-				size = 1.2;
-				speed = 1.0;
-			} else {
-				size = 1.0;
-				speed = 1.0;
-			}
-		}
-
 		this.pos = pos.copy();
 		this.direction = dir.copy();
-	}
-
-	public Color getColor() {
-		if (gender == Gender.FEMALE || age < ADULT) {
-			return Color.SADDLEBROWN;
-		} else {
-			return Color.SILVER;
-		}
 	}
 
 	public double getX() {
@@ -59,18 +30,6 @@ public class Duck implements IPondObject {
 
 	public double getY() {
 		return pos.getY();
-	}
-
-	public boolean isMale() {
-		return gender == Gender.MALE;
-	}
-
-	public boolean isFemale() {
-		return gender == Gender.FEMALE;
-	}
-
-	public boolean isAdult() {
-		return age >= ADULT;
 	}
 
 	public double getWidth() {
@@ -95,11 +54,6 @@ public class Duck implements IPondObject {
 
 	public void stop() {
 		swimming = false;
-		// walking = false;
-	}
-
-	public void quack() {
-		// System.out.println("QUACK!");
 	}
 
 	public void step() {
@@ -120,42 +74,9 @@ public class Duck implements IPondObject {
 		if (random.nextInt(10) == 0) {
 			direction.turn(random.nextDouble() * 2 - 1.0);
 		}
-
-		// follow mother
-		if (age <= YOUNG) {
-			List<IPondObject> nearbyObjects = pond.nearbyObjects(this, 400);
-			for (IPondObject o : nearbyObjects) {
-				if (o instanceof Duck) {
-					Duck d = (Duck) o;
-
-					if (d.age >= ADULT && d.gender == Gender.FEMALE) {
-						direction.turnTowards(pos.directionTo(d.getPosition()), 5);
-						break;
-					}
-				}
-			}
-		}
 	}
 
 	public void draw(GraphicsContext context) {
-		Paint bodyColor;
-		Paint headColor;
-		Paint billColor;
-
-		if (!isAdult()) {
-			bodyColor = Color.GOLD;
-			billColor = Color.SANDYBROWN;
-			headColor = Color.GOLD.brighter();
-		} else if (isFemale()) {
-			bodyColor = Color.SADDLEBROWN;
-			headColor = Color.SADDLEBROWN.brighter();
-			billColor = Color.SANDYBROWN;
-		} else {
-			bodyColor = Color.SILVER;
-			headColor = Color.DARKGREEN;
-			billColor = Color.YELLOW;
-		}
-
 		double x = pos.getX(), y = pos.getY();
 		double w = getWidth(), h = getHeight();
 
@@ -194,17 +115,15 @@ public class Duck implements IPondObject {
 		context.fillArc(0, 0, w * .5, h * .1, 135, 90, ArcType.ROUND);
 		context.restore();
 
-		// speculum
-		if (isAdult()) {
-			context.save();
-			context.translate(x + w * .7, y + h * .3);
-			context.rotate(45);
-			context.setFill(Color.WHITE);
-			context.fillRect(0, -h * .025, w * .2, h * .25);
-			context.setFill(Color.DARKBLUE);
-			context.fillRect(0, 0, w * .2, h * .2);
-			context.restore();
-		}
+		//Speculum adult-only
+		context.save();
+		context.translate(x + w * .7, y + h * .3);
+		context.rotate(45);
+		context.setFill(Color.WHITE);
+		context.fillRect(0, -h * .025, w * .2, h * .25);
+		context.setFill(Color.DARKBLUE);
+		context.fillRect(0, 0, w * .2, h * .2);
+		context.restore();
 
 		context.restore();
 	}
