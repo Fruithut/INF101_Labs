@@ -2,14 +2,13 @@ package inf101.v17.pond;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.*;
 
 import java.util.Random;
 
 public class PondTest {
     Pond testPond;
     Position pos;
-    Duck female, duckling;
+    AbstractDuck female, duckling;
     public static final double NOMINAL_WIDTH = 1900, NOMINAL_HEIGHT = 1000;
     final Random random = new Random();
 

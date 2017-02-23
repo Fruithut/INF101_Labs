@@ -7,21 +7,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.ArcType;
 
-public class Duck implements IPondObject {
+public abstract class AbstractDuck extends AbstractPondObject {
 	public static final Random random = new Random();
 
-	protected Pond pond;
+
 	protected Paint bodyColor, headColor, billColor;
-	protected double size, speed;
 	protected boolean swimming = false;
-	protected Position pos = new Position(1600, 500);
-	protected Direction direction = new Direction(-1.0, 0.0);
 
 
-	public Duck(Position pos, Direction dir, Pond pond) {
-		this.pond = pond;
-		this.pos = pos.copy();
-		this.direction = dir.copy();
+	public AbstractDuck(Position pos, Direction dir, Pond pond) {
+		super(pos, dir, pond);
 	}
 
 	public double getX() {
@@ -32,21 +27,12 @@ public class Duck implements IPondObject {
 		return pos.getY();
 	}
 
-	public double getWidth() {
-		return 200 * size;
-	}
+	public abstract boolean isAdult();
 
-	public Position getPosition() {
-		return pos.copy();
-	}
+	public abstract boolean isMale();
 
-	public Direction getDirection() {
-		return direction.copy();
-	}
+	public abstract boolean isFemale();
 
-	public double getHeight() {
-		return 100 * size;
-	}
 
 	public void swim() {
 		swimming = true;
@@ -56,6 +42,7 @@ public class Duck implements IPondObject {
 		swimming = false;
 	}
 
+	@Override
 	public void step() {
 		// size = size * 0.99999;
 		
@@ -76,6 +63,7 @@ public class Duck implements IPondObject {
 		}
 	}
 
+	@Override
 	public void draw(GraphicsContext context) {
 		double x = pos.getX(), y = pos.getY();
 		double w = getWidth(), h = getHeight();

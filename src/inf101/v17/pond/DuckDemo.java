@@ -78,21 +78,24 @@ public class DuckDemo extends Application {
 	private void setup() {
 		pond = new Pond(NOMINAL_WIDTH, NOMINAL_HEIGHT);
 
-		// female duck
-		Duck duck = new FemaleDuck(randomPos(), new Direction(-1, 0), pond);
-		duck.swim();
-		pond.addObject(duck);
+		// female abstractDuck
+		AbstractDuck abstractDuck = new FemaleDuck(randomPos(), new Direction(-1, 0), pond);
+		abstractDuck.swim();
+		pond.addObject(abstractDuck);
 		
-		// male duck
-		duck = new MaleDuck(randomPos(), new Direction(1, 0), pond);
-		duck.swim();
-		pond.addObject(duck);
+		// male abstractDuck
+		abstractDuck = new MaleDuck(randomPos(), new Direction(1, 0), pond);
+		abstractDuck.swim();
+		pond.addObject(abstractDuck);
 		
 		// duckling
-		duck = new Duckling(randomPos(), new Direction(1, 0), pond);
-		duck.swim();
-		pond.addObject(duck);
-		pond.addObject(new Fish());
+		abstractDuck = new Duckling(randomPos(), new Direction(1, 0), pond);
+		abstractDuck.swim();
+		pond.addObject(abstractDuck);
+
+		//Fish
+		AbstractPondObject testFish = new Fish(randomPos(), new Direction(1, 0), pond);
+		pond.addObject(testFish);
 
 	}
 
@@ -117,7 +120,6 @@ public class DuckDemo extends Application {
 		context.scale(scale, scale);
 		pond.draw(context);
 		context.restore();
-
 	}
 
 }

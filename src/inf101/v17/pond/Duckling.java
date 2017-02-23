@@ -8,7 +8,7 @@ import javafx.scene.shape.ArcType;
 import java.util.List;
 
 
-public class Duckling extends Duck {
+public class Duckling extends AbstractDuck {
 
     public Duckling(Position pos, Direction dir, Pond pond) {
         super(pos, dir, pond);
@@ -17,14 +17,29 @@ public class Duckling extends Duck {
     }
 
     @Override
+    public boolean isAdult() {
+        return false;
+    }
+
+    @Override
+    public boolean isMale() {
+        return false;
+    }
+
+    @Override
+    public boolean isFemale() {
+        return false;
+    }
+
+    @Override
     public void step(){
         super.step();
 
         // follow mother
-        List<IPondObject> nearbyObjects = pond.nearbyObjects(this, 400);
+        List<IPondObject> nearbyObjects = pond.nearbyObjects(this, 600);
         for (IPondObject o : nearbyObjects) {
             if (o instanceof FemaleDuck) {
-                Duck d = (Duck) o;
+                AbstractDuck d = (AbstractDuck) o;
                 direction.turnTowards(pos.directionTo(d.getPosition()), 5);
                 break;
             }

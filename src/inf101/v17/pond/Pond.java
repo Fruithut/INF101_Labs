@@ -8,7 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Pond {
-	// private Duck[] ducks = new Duck[10];
+	// private AbstractDuck[] ducks = new AbstractDuck[10];
 	private List<IPondObject> objects = new ArrayList<>();
 	private double width;
 	private double height;

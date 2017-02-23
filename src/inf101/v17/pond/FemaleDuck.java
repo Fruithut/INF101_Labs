@@ -5,7 +5,7 @@ import javafx.scene.paint.Color;
 
 import java.util.List;
 
-public class FemaleDuck extends Duck {
+public class FemaleDuck extends AbstractDuck {
 
     public FemaleDuck(Position pos, Direction dir, Pond pond) {
         super(pos, dir, pond);
@@ -14,14 +14,21 @@ public class FemaleDuck extends Duck {
         this.speed = 1.0;
     }
 
+    @Override
+    public boolean isAdult() {
+        return true;
+    }
+
     public Color getColor() {
         return Color.SADDLEBROWN;
     }
 
+    @Override
     public boolean isMale() {
         return false;
     }
 
+    @Override
     public boolean isFemale() {
         return true;
     }
