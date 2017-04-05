@@ -135,8 +135,8 @@ Tilsvarende samler `AllTests` testene fra `ATests`, `BTests` og `CTests`.
 
 
 * *Tips:* Når en test feiler (rød eller blå boks) er det viktig å undersøke hva som er galt. Se på *Failure trace* (vanligvis nede i venstre hjørnet i Eclipse – men du kan se samme informasjonen hvis du ser på den feilede testen på http://retting.ii.uib.no:81/me – trykk på "Logg" og finn exception trace-en et stykke ned i loggen).
-   * AssertionError: en test har feilet (f.eks. ved ting ikke var like i `assertEquals`). Les feilmeldingen, og se om den gir et hint – ofte vil den si at vi forventet *a* men fant *b*.
-   * Andre exceptions: Et unntak har blitt kastet mens testen ble kjørt. Sjekk hva unntaket er og hva feilmeldingen er (om noen)
+   * *AssertionError:* en test har feilet (f.eks. ved ting ikke var like i `assertEquals`). Les feilmeldingen, og se om den gir et hint – ofte vil den si at vi forventet *a* men fant *b*.
+   * *Andre exceptions:* Et unntak har blitt kastet mens testen ble kjørt. Sjekk hva unntaket er og hva feilmeldingen er (om noen)
    * I begge tilfeller er det viktig å følge sporene med hvilke kall som har blitt gjort før feilen oppstod. I Eclipse kan du dobbeltklikke på elementene i failure trace for å bli tatt direkte til koden i editoren (det kan du også gjøre hvis når du får melding om et unntak i konsollet under vanlig kjøring).
    * Å finne feil er en vitig programmeringsferdighet – pass på at du leser alle feilmeldingene, sjekker trace, og prøver å spore opp hvorfor noe har gått kalt – ofte er det mer enn nok hint til å finne ut av det ganske lett. For litt vanskeligere problemer kan det lønne seg å sette inn `System.out.println()` i koden her og der så du kan se på verdiene under kjøring, eller bruke debuggeren. 
 
@@ -274,7 +274,7 @@ Problemene med linje-som-rektangel eller rektangel-som-linje oppstår fordi ISha
 Litt avhengig av hvordan vi vil at oppførselen til linjer skal være, er det dessverre slik at arv kan ha uforutsette konsekvenser. Likevel, det er mange tilfeller hvor det passer veldig bra – slik vi så i Lab 5, og skal se flere eksempler på i neste semesteroppgave.
 
 
-# Del 1: Rekursjon
+# Del 3: Rekursjon
 
 # Oppgave 7: Grunnleggende rekursjon
 
@@ -306,8 +306,8 @@ Den merge sort vi gjorde på forelesning sorterer heltall veldig bra. Men som go
 
 * `Comparable<T>`-grensesnittet definerer en metoden `int compareTo(T other)`, som returnerer et heltall som er:
     * *< 0* om `this` er  mindre enn `other`,
-    * *== 0* hvis this` er lik `other`
-    * *> 0* `hvis this` er  mindre enn `other`
+    * *== 0* hvis `this` er lik `other`
+    * *> 0* hvis `this` er  mindre enn `other`
 
 Fra før er dette gjort med selection sort. Forsøk å gjøre det samme med merge sort. Merk at å kopiere kode direkte fra forelesningen (enten v17 eller v16) er et bar utgangspunkt – man lærer dog mye bedre om man forsøker å gjenskape algoritmen på egen hånd.
 
