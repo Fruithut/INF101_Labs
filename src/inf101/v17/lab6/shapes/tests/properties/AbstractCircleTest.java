@@ -46,14 +46,14 @@ public abstract class AbstractCircleTest extends AbstractShapeTest<ICircle> {
 	}
 
 	public void radiusWidthHeightProperty(ICircle r) {
-		assertEquals(r.getRadius() * 2, r.getWidth(), 0.0);
-		assertEquals(r.getRadius() * 2, r.getHeight(), 0.0);
+		assertEquals("Width should be 2*radius", r.getRadius() * 2, r.getWidth(), 0.0);
+		assertEquals("Width should be 2*radius", r.getRadius() * 2, r.getHeight(), 0.0);
 	}
 
 	public void setGetRadiusProperty(ICircle r, double d) {
 		r.setRadius(d);
 
-		assertEquals(d, r.getRadius(), 0.0);
+		assertEquals("Radius should be what we set it to", d, r.getRadius(), 0.0);
 	}
 
 	public void sizeBoxProperty(ICircle r) {

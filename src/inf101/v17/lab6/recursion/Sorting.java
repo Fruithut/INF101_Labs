@@ -1,5 +1,8 @@
 package inf101.v17.lab6.recursion;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Sorting {
 
     /**
@@ -12,38 +15,22 @@ public class Sorting {
      * 
      * @param lst
      */
-    public static <T extends Comparable<T>> void selectionSort(T[] lst) {
+    public static <T extends Comparable<T>> void selectionSort(List<T> lst) {
         // For each position k in the list starting with the leftmost position,
         // we put the smallest item from the remainder of the list here.
-        for (int k = 0; k < lst.length; k++) {
+        for (int k = 0; k < lst.size(); k++) {
             // Step 1: Find the smallest element in remainder of list
             int minIdx = k;
-            T minVal = lst[k];
-            for (int i = k + 1; i < lst.length; i++) {
-                if (lst[i].compareTo(minVal) < 0) {
+            T minVal = lst.get(k);
+            for (int i = k + 1; i < lst.size(); i++) {
+                if (lst.get(i).compareTo(minVal) < 0) {
                     minIdx = i;
-                    minVal = lst[i];
+                    minVal = lst.get(i);
                 }
             }
             // Step 2: Move that smallest element to position k
-            swap(lst, k, minIdx);
+            Collections.swap(lst, k, minIdx);
         }
-    }
-
-    /**
-     * Swaps two elements of an array (destructive)
-     * 
-     * @param lst
-     *            the array of elements
-     * @param i
-     *            the index of the first element
-     * @param j
-     *            the index of the second element
-     */
-    private static <T> void swap(T[] lst, int i, int j) {
-        T tmp = lst[i];
-        lst[i] = lst[j];
-        lst[j] = tmp;
     }
 
     
@@ -57,6 +44,7 @@ public class Sorting {
      * 
      * @param lst list of mutually comparable elements to be sorted.
      */
-    // TODO: Write mergeSort()
-
+    public static <T extends Comparable<T>> void mergeSort(List<T> lst) {
+    	// TOOD
+    }
 }

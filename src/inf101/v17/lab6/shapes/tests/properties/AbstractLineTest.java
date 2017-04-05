@@ -26,7 +26,7 @@ public abstract class AbstractLineTest extends AbstractShapeTest<ILine> {
 	}
 
 	public void lengthWidthProperty(ILine r) {
-		assertEquals(r.getLength(), r.getWidth(), 0.0);
+		assertEquals("Line length should be equal to width", r.getLength(), r.getWidth(), 0.0);
 	}
 
 	public void setGetLengthProperty(ILine r, double d) {
