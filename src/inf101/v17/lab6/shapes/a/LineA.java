@@ -6,8 +6,16 @@ import inf101.v17.lab6.shapes.IRectangle;
 public class LineA implements ILine {
 	private double length;
 
+	public static void checkState(LineA line) {
+		if (line.length < 0)
+			throw new IllegalStateException("Length not be negative: " + line.toString());
+		if (Double.isNaN(line.length))
+			throw new IllegalStateException("Length must not be NaN: " + line.toString());
+	}
+
 	public LineA(double length) {
-		this.length = length;
+		setLength(length);
+		checkState(this);
 	}
 
 	@Override
@@ -70,8 +78,11 @@ public class LineA implements ILine {
 	}
 
 	@Override
-	public void setLength(double newLength) {
+	public void setLength(double newLength) throws IllegalArgumentException {
+		if (newLength < 0) throw new IllegalArgumentException("Negative value");
+		else if (newLength > Double.MAX_VALUE) throw new IllegalArgumentException("Over max double value");
 		this.length = newLength;
+		checkState(this);
 	}
 
 	@Override

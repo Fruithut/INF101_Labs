@@ -6,8 +6,16 @@ import inf101.v17.lab6.shapes.IRectangle;
 public class CircleA implements ICircle {
 	private double radius;
 
+	public static void checkState(CircleA circle) {
+		if (circle.radius < 0)
+			throw new IllegalStateException("Radius must not be negative: " + circle.toString());
+		if (Double.isNaN(circle.radius))
+			throw new IllegalStateException("Radius must not be NaN: " + circle.toString());
+	}
+
 	public CircleA(double radius) {
-		this.radius = radius;
+		setRadius(radius);
+		checkState(this);
 	}
 
 	@Override
@@ -70,8 +78,11 @@ public class CircleA implements ICircle {
 	}
 
 	@Override
-	public void setRadius(double newRadius) {
+	public void setRadius(double newRadius) throws IllegalArgumentException {
+		if (newRadius < 0) throw new IllegalArgumentException("Negative radius");
+		else if (newRadius > Double.MAX_VALUE) throw new IllegalArgumentException("Over max double value");
 		radius = newRadius;
+		checkState(this);
 	}
 
 	@Override
