@@ -1,5 +1,6 @@
 package inf101.v17.lab6.shapes.b;
 
+import com.sun.org.apache.regexp.internal.RE;
 import inf101.v17.lab6.shapes.ICircle;
 import inf101.v17.lab6.shapes.ILine;
 import inf101.v17.lab6.shapes.IRectangle;
@@ -9,21 +10,18 @@ public class FactoryB implements IShapeFactory {
 
 	@Override
 	public ICircle circle(double radius) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CircleB(radius);
 	}
 
 	@Override
 	public ILine line(double length) {
-		// TODO Auto-generated method stub
-		return null;
+		return new LineB(length);
 	}
 
 
 	@Override
 	public IRectangle rectangle(double width, double height) {
-		// TODO Auto-generated method stub
-		return null;
+		return new RectangleB(width,height);
 	}
 
 }

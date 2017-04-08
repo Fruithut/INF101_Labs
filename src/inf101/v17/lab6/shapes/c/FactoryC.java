@@ -9,21 +9,18 @@ public class FactoryC implements IShapeFactory {
 
 	@Override
 	public ICircle circle(double radius) {
-		// TODO Auto-generated method stub
-		return null;
+		return new CircleC(radius);
 	}
 
 	@Override
 	public ILine line(double length) {
-		// TODO Auto-generated method stub
-		return null;
+		return new LineC(0.0,length);
 	}
 
 
 	@Override
 	public IRectangle rectangle(double width, double height) {
-		// TODO Auto-generated method stub
-		return null;
+		return new RectangleC(height,width);
 	}
 
 }

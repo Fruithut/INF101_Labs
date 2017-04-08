@@ -3,47 +3,31 @@ package inf101.v17.lab6.shapes.c;
 import inf101.v17.lab6.shapes.ILine;
 import inf101.v17.lab6.shapes.IRectangle;
 
-public class LineC implements ILine {
+public class LineC extends RectangleC implements ILine {
 
-	@Override
-	public double getArea() {
-		// TODO Auto-generated method stub
-		return 0;
+	private static void checkState(LineC line) {
+		if (line.getHeight() != 0.0)
+			throw new IllegalStateException("Height must be zero " + line.toString());
 	}
 
-	@Override
-	public double getCircumference() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+	public LineC(double height, double width) {
+		super(0.0, width);
 	}
 
 	@Override
 	public double getLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public IRectangle getSizeBox() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public double getWidth() {
-		// TODO Auto-generated method stub
-		return 0;
+		return super.getWidth();
 	}
 
 	@Override
 	public void setLength(double newLength) {
-		// TODO Auto-generated method stub
+		super.setWidth(newLength);
+	}
 
+	@Override
+	public String toString() {
+		return "LineB{" +
+				"length=" + getLength() +
+				'}';
 	}
 }

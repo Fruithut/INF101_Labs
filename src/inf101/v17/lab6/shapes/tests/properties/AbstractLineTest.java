@@ -16,11 +16,13 @@ public abstract class AbstractLineTest extends AbstractShapeTest<ILine> {
 	}
 
 	public void areaProperty(ILine r) {
+		if(r.getHeight() > 0) fail("Height is larger than zero");
 		assertApproxEquals("Area should be width*height",
 				r.getWidth() * r.getHeight(), r.getArea());
 	}
 
 	public void circumferenceProperty(ILine r) {
+		if(r.getHeight() > 0) fail("Height is larger than zero");
 		assertApproxEquals("Circumference should be 2*width+2*height",
 				2 * r.getWidth() + 2 * r.getHeight(), r.getCircumference());
 	}
