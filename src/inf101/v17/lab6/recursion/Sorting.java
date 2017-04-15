@@ -1,7 +1,6 @@
 package inf101.v17.lab6.recursion;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Sorting {
 
@@ -33,7 +32,6 @@ public class Sorting {
         }
     }
 
-    
     /**
      * Merge sort (destructive)
      * 
@@ -44,7 +42,65 @@ public class Sorting {
      * 
      * @param lst list of mutually comparable elements to be sorted.
      */
+
+    //Manual tester
+    /*public static void main(String[] args) {
+        List<Integer> x = new ArrayList<>();
+        x.add(1);
+        x.add(2);
+        x.add(6);
+        x.add(3);
+        x.add(4);
+        System.out.println(x);
+        mergeSort(x);
+        System.out.println(x);
+    }*/
+
     public static <T extends Comparable<T>> void mergeSort(List<T> lst) {
-    	// TOOD
+        List<T> copy = lst;;
+        mergesorter(copy,0, copy.size() - 1);
+    }
+
+    private static <T extends Comparable<T>> void mergesorter(List<T> copyParseThrough, int low, int high) {
+        // check if low is smaller than high, if not then the array is sorted
+        if (low < high) {
+            // Get the index of the element which is in the middle
+            int middle = low + (high - low) / 2;
+            // Sort the left side of the array
+            mergesorter(copyParseThrough, low, middle);
+            // Sort the right side of the array
+            mergesorter(copyParseThrough,middle + 1, high);
+            // Combine them both
+            merge(copyParseThrough, low, middle, high);
+        }
+    }
+
+    private static <T extends Comparable<T>> void merge(List<T> copy, int low, int middle, int high) {
+        ArrayList<T> helper = new ArrayList<>();
+
+        // Copy both parts into the helper array
+        for (int i = low; i <= high; i++) {
+            helper.add(i,copy.get(i));
+        }
+
+        int i = low, j = middle + 1, k = low;
+        // Copy the smallest values from either the left or the right side back
+        // to the original array
+        while (i <= middle && j <= high) {
+            if (helper.get(i).compareTo(helper.get(j)) <= 0) {
+                copy.set(k, helper.get(i));
+                i++;
+            } else {
+                copy.set(k, helper.get(j));
+                j++;
+            }
+            k++;
+        }
+        // Copy the rest of the left side of the array into the target array
+        while (i <= middle) {
+            copy.set(k, helper.get(i));
+            k++;
+            i++;
+        }
     }
 }

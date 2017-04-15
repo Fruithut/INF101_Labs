@@ -22,8 +22,15 @@ public class Basic {
      * @return sum of digits of num
      */
     public static int sumOfDigits(int num) {
-        // TODO
-        return 0;
+        int sum = 0;
+        if (num < 0) num = -num;
+
+        if (num == 0) {
+            return 0;
+        } else {
+            sum += num % 10;
+            return sum + sumOfDigits(num/10);
+        }
     }
 
     /**
@@ -56,8 +63,15 @@ public class Basic {
      * @return the number of blocks in the pyramid
      */
     public static int pyramidBlocks(int height) {
-        // TODO
-        return 0;
+        if (height == 0) {
+            return 0;
+        } else {
+            if (height < 0) {
+                return height * -height + pyramidBlocks(height + 1);
+            } else {
+                return height * height + pyramidBlocks(height - 1);
+            }
+        }
     }
     
     
@@ -107,8 +121,13 @@ public class Basic {
      * @return the number of ways to pick r items from a collection of n items.
      */
     public static int nCr(int n, int r) {
-        // TODO
-        return 0;
+        if (r > n || r < 0) {
+            return 0;
+        } else if (r == n || r == 0) {
+            return 1;
+        } else {
+            return nCr(n-1,r-1) + nCr(n-1,r);
+        }
     }
 
 }
