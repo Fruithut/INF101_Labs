@@ -57,33 +57,35 @@ public class Sorting {
     }*/
 
     public static <T extends Comparable<T>> void mergeSort(List<T> lst) {
-        List<T> copy = lst;;
-        mergesorter(copy,0, copy.size() - 1);
+        List<T> copy = lst;
+        ArrayList<T> helper = new ArrayList<>();
+        mergesorter(copy, helper,0, copy.size() - 1);
     }
 
-    private static <T extends Comparable<T>> void mergesorter(List<T> copyParseThrough, int low, int high) {
+    private static <T extends Comparable<T>> void mergesorter(List<T> copy, ArrayList<T> helper, int low, int high) {
         // check if low is smaller than high, if not then the array is sorted
         if (low < high) {
             // Get the index of the element which is in the middle
             int middle = low + (high - low) / 2;
             // Sort the left side of the array
-            mergesorter(copyParseThrough, low, middle);
+            mergesorter(copy, helper, low, middle);
             // Sort the right side of the array
-            mergesorter(copyParseThrough,middle + 1, high);
+            mergesorter(copy, helper,middle + 1, high);
             // Combine them both
-            merge(copyParseThrough, low, middle, high);
+            merge(copy, helper, low, middle, high);
         }
     }
 
-    private static <T extends Comparable<T>> void merge(List<T> copy, int low, int middle, int high) {
-        ArrayList<T> helper = new ArrayList<>();
+    private static <T extends Comparable<T>> void merge(List<T> copy, ArrayList<T> helper, int low, int middle, int high) {
 
         // Copy both parts into the helper array
         for (int i = low; i <= high; i++) {
             helper.add(i,copy.get(i));
         }
 
-        int i = low, j = middle + 1, k = low;
+        int i = low;
+        int j = middle + 1;
+        int k = low;
         // Copy the smallest values from either the left or the right side back
         // to the original array
         while (i <= middle && j <= high) {
@@ -102,5 +104,6 @@ public class Sorting {
             k++;
             i++;
         }
+
     }
 }
