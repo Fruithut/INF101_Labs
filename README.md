@@ -94,7 +94,7 @@ Dvs. at når vi lager en ny grid-generator, må vi si hvilken elementtype gridet
 IGenerator<IGrid<String>> gridGen = new MyGridGenerator<String>(new StringGenerator());
 ```
  
-* Fullfør implementeringen av `generate(Random r)` i [inf101.v16.util.generators.MyGridGenerator](https://inf101.ii.uib.no/inf101.v16.oppgaver/inf101.v16.lab3/tree/master/src/inf101/v16/util/generators/MyGridGenerator.java). De andre metodene er allerede ferdig laget.
+* Fullfør implementeringen av `generate(Random r)` i [inf101.v16.util.generators.MyGridGenerator]. De andre metodene er allerede ferdig laget.
 
 # Oppgave 4: Testing av MyGrid2D.
 
