@@ -9,8 +9,6 @@ Lab 2: Celle-automater
 * Lage egne datastrukturer / ADTer
 * Prøv [generiske klasser og grensesnitt](http://docs.oracle.com/javase/tutorial/extra/generics/index.html)
 
-**Frist: én uke etter at du er ferdig med [Lab 1](lab-1)**
-
 ## Om oppgaven
 
 Lab-oppgavene denne uken handler om cellemaskiner.
@@ -43,38 +41,6 @@ Under er bilde av en von Neumann cellemaskin som gjør akkurat det. Den bruker h
 
 ![von-neumann-maskin](http://upload.wikimedia.org/wikipedia/commons/5/50/VonNeumann_CA_demo.gif "Von Neumann maskin")
 
-# Steg 0: Gjør ferdig forrige oppgave
-
-Laboppgavene bør gjøres i rekkefølge, som om du ikke er helt ferdig med den forrige, gjør den ferdig først.
-
-# Steg 1: Hent Oppgaven fra git
-
-Som før skal du ha et repository for oppgaven på inf101.ii.uib.no. Se [Lab 1](lab-1) for mer informasjon og instrukser. Oppgaven skal dere kunne finne i repositoriet med den følgende
-urien:
-
-    https://inf101.ii.uib.no/<brukernavn>/inf101.v16.lab2.git
-
-Hvor `<brukernavn>` skal byttes ut med brukernavnet ditt på inf101.ii.uib.no. Merk at
-det er nødvendig å bruke https (ssh vil ikke fungere).
-
-Som vist i forelesningene, for å få dette prosjektet inn i eclipse, velg
-`import` fra fil menyen.  Velg så `Git` -> `Projects from git` -> `Clone URI`.
-Fyll in URIen som du finner over. (Eclipse fyller så ut *host* og *repository path* med `inf101.ii.uib.no` og
-`/<brukernavn>/inf101.v16.lab2.git`.
-
-Skriv inn ditt brukernavnet og GitLab-passord, og trykk `next`. Nå velger du hvilken
-branch du skal ha (`master` og `clear`). Trykk på `next`. Neste ting er å velge en mappe å
-putte repositoriet under `Directory`, og la resten være slik det er (initial
-branch: `master`, Remote name: `origin`), `next` -> `import existing project`
--> `next` -> `finish`.
-
-Nå skal du ha et prosjekt i eclipse som heter `inf101.v16.lab2`.
-
-Merk at innlevering skal skje til dette repositoriet. For å levere
-bruker du `Team` -> `Push` (husk at du må bruke `commit` først), eventuelt `Team` -> `Commit` og så `Commit and Push`. *Husk* at hvis du har opprettet nye klasser/filer, må du krysse av for disse i commit-dialogen for at de skal bli med i opplastingen. *Sjekk kvitteringssiden som kommer opp når du pusher, i tilfelle det skjer feil!*
-
-Vi anbefaler at du gjør commit hver dag, eller hver gang du er ferdig med en større endring. Da går det alltid an å lete seg tilbake i historien til en tidligere versjon hvis du har havnet på villspor (commit-dialogen inneholder også en praktisk "Commit and push"-knapp, som pusher endringene til GitLab med en gang).
-
 # Oversikt over koden
 
 Koden kommer med [Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) allerede. Senere skal vi utvide programmet slik at
@@ -90,25 +56,13 @@ levende eller døende i midten).
 
 Vi skal først gjøre ferdig noen av klassene, slik at vi kan se at Game of Life fungerer, og så skal vi implementere Brian's Brain.
 
-# Pakker og Package Explorer
-
-Større Java-prosjekter er organisert i *packages*. Det gjelder også koden dere får utlevert. Du finner pakkene i `src`-mappen i Eclipse-prosjektet. Du er denne gangen bare interessert i det som ligger i `inf101.v16.cell` og `inf101.v16.datastructures`:
-
-![Package Explorer](lab2/packages.png)
-
-Du kan, om du vil, få Eclipse sin Package Explorer til å vise oversikten hierarkisk og ikke flat (som over). Anya synes det er mest praktisk, særlig for store prosjekter. Du kan justere dette i den lille menyen du finner under trekanten øverst i Package Explorer:
-
-![Package Explorer View Menu](lab2/viewmenu.png)
-
-Velg *Package Presentation → Hierarchical*.
-
 # Steg 2: IGrid og MyGrid – Enkel *generics*
 
 Vi trenger å kunne holde rede på en todimensjonal brett av celletilstander – et *grid*. Dette kunne vi gjort med en array, eller evt en array av arrays, men det er best å lage en egen klasse for dette, slik at vi er uavhengige av hvordan dataene er lagret – den delen av programmet som håndterer celleautomater skal ikke trenge å være avhengig av hvilken løsning vi har valgt for å lagre todimensjonale data. Vi lager altså en abstrakt datatype (ADT) for å håndtere todimensjonale brett.
 
 ## Generisk interface
 
-Vi har laget et grensesnitt [IGrid<T>](/inf101.v16.oppgaver/inf101.v16.lab2/blob/master/src/inf101/v16/datastructures/IGrid.java) som inneholder metodene vi er interessert å bruke på brett. IGrid er et *generisk* interface – det vil si at det er uavhengig av hvilken type elementer vi har tenkt å lagre; om det er strenger, tall eller andre objekter. `T`-en i deklarasjonen av grensesnittet står for den typen elementer vi vil lagre. IGrid har følgende metoder:
+Vi har laget et grensesnitt IGrid<T> som inneholder metodene vi er interessert å bruke på brett. IGrid er et *generisk* interface – det vil si at det er uavhengig av hvilken type elementer vi har tenkt å lagre; om det er strenger, tall eller andre objekter. `T`-en i deklarasjonen av grensesnittet står for den typen elementer vi vil lagre. IGrid har følgende metoder:
 
     public interface IGrid<T> {
         int getHeight();  // returner høyden
@@ -131,7 +85,7 @@ Når vi bruker grensesnittet, erstatter vi `T`-en med den ønskede elementtypen.
 
 Du skal nå gjøre ferdig en implementasjon av IGrid.
 
-* Åpne filene [IGrid.java](/inf101.v16.oppgaver/inf101.v16.lab2/blob/master/src/inf101/v16/datastructures/IGrid.java) og [MyGrid.java](/inf101.v16.oppgaver/inf101.v16.lab2/blob/master/src/inf101/v16/datastructures/MyGrid.java) i Eclipse (du finner dem i `src/inf101/v16/datastructures/`). Les dokumentasjonen til metodene i IGrid.
+* Åpne filene IGrid.java og MyGrid.java i Eclipse (du finner dem i `src/inf101/v16/datastructures/`). Les dokumentasjonen til metodene i IGrid.
 * I klassen som følger med oppgaven har vi lagt til noen feltvariabler. Du står fritt til å gjøre andre valg om du vil.
     * Vi har brukt `IList<T>` (grensesnitt) og `MyList<T>` (implementasjon av `IList<T>` til å lagre elementene – denne klassen er en justert utgave av koden fra forelesningene. Her kan man evt bruke `List<T>` og `ArrayList<T>` som følger med i Java.
     * Du *kan* bruke en vanlig array/tabell, `T[]` – men du vil da oppleve at du får problemer med å opprette array-objektet (`new T[10]` gir feil, f.eks.). Dette er en av grunnene til at vi skal unngå arrays i INF101.
@@ -185,7 +139,7 @@ er dette grensesnittet som `BriansBrain` også skal implementere.
 * Høyreklikk på `Main`, velg *Run as → Java Application*.
 * Prøv ut programmet. Det skal se ca. slik ut:
 
-![Game of life](lab2/cell.png)
+!Game of life
 
 Steg 4: Brian's Brain
 ==========
