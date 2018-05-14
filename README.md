@@ -1,4 +1,5 @@
 #### *NB: This repository has been cloned from a GitLab server that was used for assignment delivery*
+#### *This repository does not contain the textual answers, and may or may not be fully completed in some parts*
 
 # Lab 6 - Forkrav og datainvariant – arv og substitusjonsprinsippet – litt rekursjon
 
@@ -16,30 +17,13 @@ Når du er ferdig med oppgaven, skal du kunne:
 
 Det er ganske mye å gjøre, så du blir gjerne ikke ferdig på én uke. Del 1 og del 2 er viktigst.
 
-# Oppgave 0: Hent oppgaven fra git
-
-Som før skal du ha et repository for oppgaven på retting.ii.uib.no .
-Oppgaven skal dere kunne finne i repositoriet med den følgende
-urien:
-
-    https://retting.ii.uib.no/<brukernavn>/inf101.v17.lab6.git
-
-Hvor `<brukernavn>` skal byttes ut med brukernavnet ditt på retting.ii.uib.no. Merk at
-det er nødvendig å bruke https (ssh vil ikke fungere).
-
-Se [Lab1](lab-1) for videre veiledning. Husk at du kan følge med på testresultatene fra rette-serveren her: http://retting.ii.uib.no:81/me
-
-(Du kan [se på filene her](http://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master) – men bruk alltid din egen URI når du kloner repositoriet til din egen datamaskin, ellers vil du ikke få lov til å pushe senere.)
-
-**Progresjon:** Denne oppgaven er relativt stor, så du kan gjerne bruke mer enn én uke på den. Regn f.eks. med å gjøre 1–4 den første uken, og 5–7 neste uken (eller spre labben over tre uker). Deloppgave 7 kan du evt. vente med til senere i semesteret når du har fått mer erfaring med arv.
-
 ## Innhold
 
 Prosjektet inneholder følgende Java-pakker:
 
-* [inf101.v17.lab6.recursion](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/recursion) – her skal oppgavene om rekursjon løses.
-* [inf101.v17.lab6.recursion.tests](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/recursion/tests) – pakke for diverse tester av rekursjonsoppgavene
-* [inf101.v17.lab6.shapes](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes).* – grensesnitt, implementasjoner og tester for geometriske figurer (linje, sirkel, rektangel), til bruk i oppgavene om arv
+* [inf101.v17.lab6.recursion] – her skal oppgavene om rekursjon løses.
+* [inf101.v17.lab6.recursion.tests] – pakke for diverse tester av rekursjonsoppgavene
+* [inf101.v17.lab6.shapes] – grensesnitt, implementasjoner og tester for geometriske figurer (linje, sirkel, rektangel), til bruk i oppgavene om arv
 
 
 # Del 1: Forkrav og invarianter
@@ -50,22 +34,22 @@ Prosjektet inneholder følgende Java-pakker:
 
 I resten av labben skal vi bruke følgende pakker:
 
-* [inf101.v17.lab6.shapes](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes) – grensesnitt for geometriske figurer (linje, sirkel, rektangel)
-* [inf101.v17.lab6.shapes.a](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/a) – klasser med implementasjoner av geometriske figurer
-* [inf101.v17.lab6.shapes.b](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/b) – tomme klasser for en alternativ implementasjon av figurer
-* [inf101.v17.lab6.shapes.c](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/c) – tomme klasser for en alternativ implementasjon av figurer
-* [inf101.v17.lab6.shapes.tests](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/tests) – pakke for diverse tester av innholdet i de andre pakkene
-* [inf101.v17.util](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/util) – inneholder klasser og grensesnitt for datagenerering (videreutvikling av [Lab 4](lab-4))
-* [inf101.v17.util.generators](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/util/generators) – klasser for generering av spesifikke typer data (videreutvikling av [Lab 4](lab-4))
+* [inf101.v17.lab6.shapes] – grensesnitt for geometriske figurer (linje, sirkel, rektangel)
+* [inf101.v17.lab6.shapes.a] – klasser med implementasjoner av geometriske figurer
+* [inf101.v17.lab6.shapes.b] – tomme klasser for en alternativ implementasjon av figurer
+* [inf101.v17.lab6.shapes.c] – tomme klasser for en alternativ implementasjon av figurer
+* [inf101.v17.lab6.shapes.tests] – pakke for diverse tester av innholdet i de andre pakkene
+* [inf101.v17.util] – inneholder klasser og grensesnitt for datagenerering (videreutvikling av [Lab 4](lab-4))
+* [inf101.v17.util.generators] – klasser for generering av spesifikke typer data (videreutvikling av [Lab 4](lab-4))
 
 ### Grensesnitt
 De interessante grensesnittene er:
 
-* [IShape](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/IShape.java) – en figur med udefinert form, men med areal og omkrets, og en ide om bredde og høyde
-* [ILine](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/ILine.java) – utvidelse av `IShape` for å representere linjer som har en lengde
-* [ICircle](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/ICircle.java) – utvidelse av `IShape` for å representere sirkler med radius
-* [IRectangle](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/IRectangle.java) – utvidelse av `IShape` for å representere rektangler med bredde og høyde
-* [IShapeFactory](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/IShapeFactory.java) – et [factory](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) som brukes for å kunne lage figurer (av en kjent type) uten at man trenger å vite hvilken klasse de er av (vi trenger dette for å kunne håndtere eksperimenter med flere forskjellige måter å implementere figurene på)
+* [IShape] – en figur med udefinert form, men med areal og omkrets, og en ide om bredde og høyde  
+* [ILine] – utvidelse av `IShape` for å representere linjer som har en lengde  
+* [ICircle] – utvidelse av `IShape` for å representere sirkler med radius  
+* [IRectangle] – utvidelse av `IShape` for å representere rektangler med bredde og høyde  
+* [IShapeFactory] – et [factory](https://en.wikipedia.org/wiki/Factory_(object-oriented_programming)) som brukes for å kunne   lage figurer (av en kjent type) uten at man trenger å vite hvilken klasse de er av (vi trenger dette for å kunne håndtere   eksperimenter med flere forskjellige måter å implementere figurene på)  
 
 
 ### Flere varianter
@@ -74,7 +58,7 @@ I løpet av oppgaven skal du implementere figurene på flere forskjellige måter
 
 ### Tester
 
-Testene er delt i to pakker, [inf101.v17.lab6.shapes.tests.properties](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/tests/properties), som inneholder tester og egenskaper som er felles for alle implementasjoner av samme grensesnitt, og [inf101.v17.lab6.shapes.tests](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/tests) som inneholder de kjørbare testene.
+Testene er delt i to pakker, [inf101.v17.lab6.shapes.tests.properties], som inneholder tester og egenskaper som er felles for alle implementasjoner av samme grensesnitt, og [inf101.v17.lab6.shapes.tests] som inneholder de kjørbare testene.
 
 For å kjøre alle testene på koden som følger med, kjør `ATests`. Når du har laget B- og C-variantene kan du også prøve `BTests` og `CTests`. I tillegg vil `AllTests` kjøre alle testene for alle variantene.
 
@@ -136,7 +120,7 @@ Tilsvarende samler `AllTests` testene fra `ATests`, `BTests` og `CTests`.
 * *Oppgave:* Kjør testene i *ATests*. Kikk på testene som feiler og finn ut hvor de er implementert. Finn også koden for `testWidth`, `testRectArea` og `equalsTest` (følg sistnevnte inn i `StandardProperties` og ta en titt på testene for `equals` – du vil se at de tilsvarer definisjonen av [matematisk ekvivalens](https://en.wikipedia.org/wiki/Equivalence_relation)). Feil i `equalsTest` vil ofte komme av at du mangler `equals()` og `hashCode()` – disse genererer du fra *Source*-menyen i Eclipse.
 
 
-* *Tips:* Når en test feiler (rød eller blå boks) er det viktig å undersøke hva som er galt. Se på *Failure trace* (vanligvis nede i venstre hjørnet i Eclipse – men du kan se samme informasjonen hvis du ser på den feilede testen på http://retting.ii.uib.no:81/me – trykk på "Logg" og finn exception trace-en et stykke ned i loggen).
+* *Tips:*
    * *AssertionError:* en test har feilet (f.eks. ved ting ikke var like i `assertEquals`). Les feilmeldingen, og se om den gir et hint – ofte vil den si at vi forventet *a* men fant *b*.
    * *Andre exceptions:* Et unntak har blitt kastet mens testen ble kjørt. Sjekk hva unntaket er og hva feilmeldingen er (om noen)
    * I begge tilfeller er det viktig å følge sporene med hvilke kall som har blitt gjort før feilen oppstod. I Eclipse kan du dobbeltklikke på elementene i failure trace for å bli tatt direkte til koden i editoren (det kan du også gjøre hvis når du får melding om et unntak i konsollet under vanlig kjøring).
@@ -265,7 +249,7 @@ Nå prøvde vi å legge begrensninger på subklassen som ikke fantes i superklas
 
 * Fjern checkState-sjekken.
 
-* Gå inn i [AbstractLineTest.java](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/tree/master/src/inf101/v17/lab6/shapes/tests/properties/AbstractLineTest.java), og endre f.eks. `areaProperty` og `circumferenceProperty` slik at de krever at høyden er 0.
+* Gå inn i [AbstractLineTest.java], og endre f.eks. `areaProperty` og `circumferenceProperty` slik at de krever at høyden er 0.
 
 * Kjør testene på nytt, både BTests og CTests. Hvordan går det?
 
@@ -280,7 +264,7 @@ Litt avhengig av hvordan vi vil at oppførselen til linjer skal være, er det de
 
 # Oppgave 7: Grunnleggende rekursjon
 
-I denne oppgaven skal vi skrive ferdig de rekursive funksjonene i [Basic](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/blob/master/src/inf101/v17/lab6/recursion/Basic.java) -klassen. Etter at vi er ferdig med alle deloppgavene skal alle testene i [TestBasic](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/blob/master/src/inf101/v17/lab6/recursion/tests/TestBasic.java) passere. Merk at testene vi finner her er små og ufullstendinge, og vi vil kjøre mer omfattende tester på koden du leverer inn. Det er derfor svært lurt å skrive sine egne tester i tillegg for å teste flere scenarioer.
+I denne oppgaven skal vi skrive ferdig de rekursive funksjonene i [Basic] -klassen. Etter at vi er ferdig med alle deloppgavene skal alle testene i [TestBasic] passere. Merk at testene vi finner her er små og ufullstendinge, og vi vil kjøre mer omfattende tester på koden du leverer inn. Det er derfor svært lurt å skrive sine egne tester i tillegg for å teste flere scenarioer.
 
 I de rekursive oppgavene i denne bolken skal du ikke benytte løkker av noe slag (for, while etc.). 
 
@@ -299,7 +283,7 @@ Dersom du tester oppgave 7c og finner ut at det går forferdelig tregt selv for 
 
 
 # Oppgave 8: Merge sort
-I denne oppgaven skal vi jobbe med klassen [Sorting](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/blob/master/src/inf101/v17/lab6/recursion/Sorting.java). Fra forelesning om rekursjon husker dere kanskje hvordan merge sort fungerer: Vi begynner først med å dele arbeidsmengden vår i to, og deretter rekursivt sorterer vi hver halvdel. Etter at de to halvdelene begge er sortert, fletter vi de to listene sammen ved hjelp av tre pekere: Én for hvor langt vi er kommet i den venstre listen, én for hvor langt vi er kommet i den høyre listen og én for hvor langt vi er kommet totalt i den nye, sorterte listen. Det kan være lurt å ta en titt på [Wikipedia-siden om merge sort]. Se ogås gjerne på  koden for [mergesort fra forelesningen](https://retting.ii.uib.no/inf101/inf101v17/blob/master/inf101.v17.f15/src/MergeSort.java) og en annen, liknende [implementasjon fra i fjor](https://retting.ii.uib.no/inf101/inf101v17/blob/master/inf101v17f12/src/inf101v17f12/recursion/Sorting.java).
+I denne oppgaven skal vi jobbe med klassen [Sorting]. Fra forelesning om rekursjon husker dere kanskje hvordan merge sort fungerer: Vi begynner først med å dele arbeidsmengden vår i to, og deretter rekursivt sorterer vi hver halvdel. Etter at de to halvdelene begge er sortert, fletter vi de to listene sammen ved hjelp av tre pekere: Én for hvor langt vi er kommet i den venstre listen, én for hvor langt vi er kommet i den høyre listen og én for hvor langt vi er kommet totalt i den nye, sorterte listen. Det kan være lurt å ta en titt på [Wikipedia-siden om merge sort]. Se ogås gjerne på  koden for [mergesort fra forelesningen] og en annen, liknende [implementasjon fra i fjor]
 
 Den merge sort vi gjorde på forelesning sorterer heltall veldig bra. Men som gode programmerere ønsker vi at koden vår skal kunne gjenbrukes så mye som mulig og være så generell som mulig. Vi ønsker derfor å skrive merge sort på nytt slik at den nå sorterer en list med hvilke som helst type sammenlignbare elementer. For å få det til trenger vi å gjøre noen ting annerledes:
 
@@ -316,6 +300,6 @@ Fra før er dette gjort med selection sort. Forsøk å gjøre det samme med merg
  * Skriv `public static <T extends Comparable<T>> void mergeSort(List<T> lst)` som virker for enhver liste av sammenlignbare (Comparable) elementer
 
 
-I [TestSorting](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/blob/master/src/inf101/v17/lab6/recursion/tests/TestSorting.java) er det noen tester som er klare for å teste selection sort og merge sort. Ta en titt på hvordan testene er laget – det er to varianter som begge tester med tilfeldige lister: den ene lager en kopi av listen, sorterer den med Javas innebygde sortering, og så sammenlikner med vår egen sortertingsalgoritme, og den andre sorterer listen og så sjekker at elementene ligger i sortert rekkefølge. Sistnevne er kanskje den smarteste måten å teste på – siden det er mye enklere å sjekke om noe er sortert enn det er å sortere det. 
+I [TestSorting] er det noen tester som er klare for å teste selection sort og merge sort. Ta en titt på hvordan testene er laget – det er to varianter som begge tester med tilfeldige lister: den ene lager en kopi av listen, sorterer den med Javas innebygde sortering, og så sammenlikner med vår egen sortertingsalgoritme, og den andre sorterer listen og så sjekker at elementene ligger i sortert rekkefølge. Sistnevne er kanskje den smarteste måten å teste på – siden det er mye enklere å sjekke om noe er sortert enn det er å sortere det. 
 
-Etter at du er ferdig med oppgave 8 skal alle testene i [TestSorting](https://retting.ii.uib.no/inf101.v17.oppgaver/inf101.v17.lab6/blob/master/src/inf101/v17/lab6/recursion/tests/TestSorting.java) passere. Dersom alt er som det skal, vil merge sort være langt raskere enn selection sort for store verdier av `LISTLEN`. (Hvorfor er det slik?)
+Etter at du er ferdig med oppgave 8 skal alle testene i [TestSorting] passere. Dersom alt er som det skal, vil merge sort være langt raskere enn selection sort for store verdier av `LISTLEN`. (Hvorfor er det slik?)
