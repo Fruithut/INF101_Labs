@@ -1,31 +1,12 @@
 #### *NB: This repository has been cloned from a GitLab server that was used for assignment delivery*
 
-[Lab 5: Andedam](lab-5)
+[Lab 5: Andedam]
 ===
 
 ## Læringsmål
 
 * Bli kjent med bruk av arv og abstrakte klasser
 * Kjenne til effekten av private og protected
-
-## Om oppgaven
-
-I lab-oppgaven denne uken skal vi forbedre andedammen fra [forelesningene i januar](https://retting.ii.uib.no/inf101/inf101v17/wikis/forelesninger/0203-Objekter), slik at vi kan ha ender med litt forskjellig oppførsel.
-
-Vi skal bruke arv, slik at felles oppførsel havner i superklassen, mens spesiell oppførsel havner i subklassene.
-
-
-# Steg 0: Gjør ferdig tidligere oppgaver
-
-Laboppgavene bør gjøres i rekkefølge, som om du ikke er helt ferdig med den forrige, gjør den ferdig først. (Det er helt normalt å bruke mer enn en uke på en oppgave).
-
-# Steg 1: Hent Oppgaven fra git
-
-Som før skal du ha et repository for oppgaven på retting.ii.uib.no. Se [Lab
-1](lab-1) og [Lab-2](lab-2) for mer informasjon og instrukser. Oppgaven skal dere kunne finne i
-repositoriet med den følgende urien:
-
-    https://retting.ii.uib.no/<brukernavn>/inf101.v17.lab5.git
 
 ## Oversikt over koden
 
@@ -42,7 +23,7 @@ repositoriet med den følgende urien:
 ## Steg 2: Kjøre programmet
 
 * Kjør programmet i `inf101.v17.pond.PondDemo`. Du skal se noen ender som svømmer rundt i en andedam.
-* Les gjennom kode og [notatene fra forelesningen](https://retting.ii.uib.no/inf101/inf101v17/wikis/forelesninger/0203-Objekter)
+* Les gjennom kode og [notatene fra forelesningen]
 
 ## Steg 3: Forskjellige ender
 
