@@ -1,6 +1,6 @@
 #### *NB: This repository has been cloned from a GitLab server that was used for assignment delivery*
 
-[Lab 3: Labyrint](lab-3)
+# Lab 3: Labyrint
 ===
 
 ## Læringsmål
@@ -13,7 +13,7 @@
 ## Om oppgaven
 
 I lab-oppgaven denne uken skal vi forbedre [labyrintoppgaven fra
-Semesteroppgave 3](lab3/semoppg3.pdf) i inf100 Høst 2016. I denne oppgaven skulle vi
+Semesteroppgave 3] i inf100 Høst 2016. I denne oppgaven skulle vi
 lage et lite program som leser inn en labyrint fra en fil og så
 lar en spiller navigere den.
 
@@ -37,19 +37,6 @@ Vi ønsker å forbedre implementasjonen fra denne oppgaven for å
 I tillegg til et grafisk grensesnitt har vi lagt ved en klasse
 med en main metode som gjenskaper det tekst-baserte grensesnittet
 fra den opprinnelige oppgaven.
-
-
-# Steg 0: Gjør ferdig forrige oppgave
-
-Laboppgavene bør gjøres i rekkefølge, som om du ikke er helt ferdig med den forrige, gjør den ferdig først.
-
-# Steg 1: Hent Oppgaven fra git
-
-Som før skal du ha et repository for oppgaven på retting.ii.uib.no. Se [Lab
-1](lab-1) og [Lab-2](lab-2) for mer informasjon og instrukser. Oppgaven skal dere kunne finne i
-repositoriet med den følgende urien:
-
-    https://retting.ii.uib.no/<brukernavn>/inf101.v17.lab3.git
 
 ## Oversikt over koden
 
@@ -95,7 +82,7 @@ På samme måte må `MyGrid` forandres til
 
 ## Steg 4: Bruk `MyGrid<T>` i Lab 2
 
-Vi har lagt ved programmet fra [Lab 2](lab-2). Gjør om
+Vi har lagt ved programmet fra Lab 2. Gjør om
 programmet slik at det kan bruke `IGrid<T>`/`MyGrid<T>`.
 
 * Sjekk celleautomatene (f.eks. `GameOfLife.java`) og se at de fremdeles fungerer og at celleautomat-programmet `inf101.v17.cell.Main` virker.
