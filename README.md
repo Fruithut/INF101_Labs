@@ -1,3 +1,5 @@
+#### *NB: This repository has been cloned from a GitLab server that was used for assignment delivery*
+
 # Lab 6 - Forkrav og datainvariant – arv og substitusjonsprinsippet – litt rekursjon
 
 ## Læringsmål
