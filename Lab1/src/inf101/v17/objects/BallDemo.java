@@ -3,25 +3,20 @@ package inf101.v17.objects;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
 
 public class BallDemo extends Application {
-	private AnimationTimer timer;
 	private Canvas canvas;
 	private long nanosPerStep = 1000_000_000L / 60L;
 	private long timeBudget = nanosPerStep;
@@ -34,9 +29,8 @@ public class BallDemo extends Application {
 	}
 
 	@Override
-	public void start(Stage stage) throws Exception {
-		double width = 640;
-		double height = 480;
+	public void start(Stage stage) {
+		double width = 640, height = 480;
 		Group root = new Group();
 		Scene scene = new Scene(root, width, height, Color.BLACK);
 		stage.setScene(scene);
@@ -47,33 +41,25 @@ public class BallDemo extends Application {
 
 		setup();
 
-		timer = new AnimationTimer() {
-
+		AnimationTimer timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
-				// System.out.println("Elapsed: " + (now -
-				// lastUpdateTime)/(double)millisPerStep);
 				if (lastUpdateTime > 0) {
 					timeBudget = Math.min(timeBudget + (now - lastUpdateTime), 10 * nanosPerStep);
 				}
 				lastUpdateTime = now;
 
 				while (timeBudget >= nanosPerStep) {
-					// System.out.println("Budget: " + timeBudget);
 					timeBudget = timeBudget - nanosPerStep;
 					step();
 				}
 				draw();
 			}
-
 		};
+
 		root.getChildren().add(canvas);
-
-		// canvas.setEffect(new BoxBlur());
 		timer.start();
-//		stage.setFullScreen(true);
 		stage.show();
-
 	}
 
 	private void setup() {
@@ -82,15 +68,7 @@ public class BallDemo extends Application {
 		}
 	}
 	
-	public void addBall(Ball ball) {
-		balls.add(ball);
-	}
-	
-	public void removeBall(Ball ball) {
-		balls.remove(ball);
-	}
-	
-	public void addExplosion(Ball ball) {
+	void addExplosion(Ball ball) {
 		balls.remove(ball);
 		for(int i = 0; i < 10; i++) {
 			Ball b = new Ball(ball.getColor(), ball.getRadius()/2, this);
@@ -114,8 +92,6 @@ public class BallDemo extends Application {
 				new Stop(1.0, (Color) color));
 		Ball b = new Ball(paint, size, this);
 		b.moveTo(x, y);
-		// b.moveTo(256 + random.nextInt(1400), random.nextInt(1280) - 200);
-		// b.accelerate(i - 1, -3 * (i - 1));
 		b.accelerate((128/size) * random.nextDouble() - 1.5, -(512/size) * random.nextDouble() + 1);
 		balls.add(b);
 
@@ -123,7 +99,7 @@ public class BallDemo extends Application {
 
 	private int stepCount = 0;
 
-	protected void step() {
+	private void step() {
 		for (Ball b : new ArrayList<>(balls)) {
 			if (b.getY() + b.getHeight() / 2 < canvas.getHeight()) {
 				b.accelerate(0, 0.098f);
@@ -140,16 +116,14 @@ public class BallDemo extends Application {
 			} else if (b.getX() + b.getWidth() / 2 >= canvas.getWidth()) {
 				 bounceX = canvas.getWidth() - (b.getX() + b.getWidth() / 2);
 			}
-			// if (b.getY() - b.getHeight() / 2 <= 0.0) {
-			// bounceY = 0 - (b.getY() - b.getHeight() / 2);
-			// } else
+
 			if (b.getY() - b.getHeight() / 2 >= canvas.getHeight()) {
 				balls.remove(b);
 			} else if (b.getY() + b.getHeight() / 2 >= canvas.getHeight()) {
 				bounceY = canvas.getHeight() - (b.getY() + b.getHeight() / 2);
 			}
 			if (bounceY != 0.0 || bounceX != 0.0) {
-				if (random.nextInt(1) == 0) { //Math.abs(bounceY) < 0.1) {
+				if (random.nextInt(1) == 0) {
 					balls.remove(b);
 					if (b.getRadius() > 8.0) {
 						double dy = b.getDeltaY();
@@ -169,9 +143,7 @@ public class BallDemo extends Application {
 		stepCount++;
 	}
 
-	double rotation = 0;
-
-	protected void draw() {
+	private void draw() {
 		GraphicsContext context = canvas.getGraphicsContext2D();
 		context.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		for (int i = balls.size() - 1; i >= 0; i--) {
@@ -182,33 +154,9 @@ public class BallDemo extends Application {
 			double yPos = b.getY() - h / 2.0;
 			context.save();
 			context.setFill(b.getColor());
-			// context.fillOval(xPos, yPos, w, h);
-			// context.translate(xPos+w/3, yPos+h/3);
 			context.fillOval(xPos, yPos, w / 1, h / 1);
 			context.restore();
-			// context.strokeOval(b.getX()-b.getRadius()/2,
-			// b.getY()-b.getRadius(), b.getRadius(), b.getRadius());
-
-			// double offset = rotation % (b.getRadius() / 2.5);
-			// for (double left = -b.getRadius() + offset; left <=
-			// b.getRadius(); left += b.getRadius() / 2.5) {
-			// if (left < 0)
-			// context.strokeArc(b.getX() + left, yPos + 1, 2 * -left, h - 2,
-			// 90, 180, ArcType.OPEN);
-			// else
-			// context.strokeArc(b.getX() - left, yPos + 1, 2 * left, h - 2, 90,
-			// -180, ArcType.OPEN);
-			//
-			// }
-
-			// context.strokeOval(b.getX()-b.getRadius()/2.5,
-			// b.getY()-b.getRadius(), b.getRadius()/1.25, b.getRadius());
-			// context.strokeOval(b.getX()-(b.getRadius()/4),
-			// b.getY()-b.getRadius(), b.getRadius()/2, b.getRadius());
-			// context.strokeOval(b.getX()-(b.getRadius()/8),
-			// b.getY()-b.getRadius(), b.getRadius()/4, b.getRadius());
 		}
-		rotation += 1;
 	}
 
 }

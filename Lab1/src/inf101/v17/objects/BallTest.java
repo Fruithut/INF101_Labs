@@ -9,7 +9,7 @@ import org.junit.Test;
 import javafx.scene.paint.Color;
 
 public class BallTest {
-	public static final double DELTA = 1e-10;
+	private static final double DELTA = 1e-10;
 	private static final int N = 10000;
 	private Random random = new Random();
 	private final BallDemo demo = new BallDemo();
@@ -32,7 +32,7 @@ public class BallTest {
 		}
 	}
 
-	public void dimensionsProperty(double radius) {
+	private void dimensionsProperty(double radius) {
 		radius = Math.abs(radius);
 		Ball b = new Ball(Color.WHITE, radius, demo);
 		assertEquals(radius, b.getRadius(), 0.0);
@@ -40,7 +40,7 @@ public class BallTest {
 		assertEquals(2 * radius, b.getWidth(), DELTA);
 	}
 
-	public void badDimensionsProperty(double radius) {
+	private void badDimensionsProperty(double radius) {
 		radius = -Math.abs(radius);
 		try {
 			new Ball(Color.WHITE, radius, demo);
@@ -57,7 +57,7 @@ public class BallTest {
 		}
 	}
 
-	public void accelerateProperty(Ball b, double ddx, double ddy) {
+	private void accelerateProperty(Ball b, double ddx, double ddy) {
 		double dx = b.getDeltaX();
 		double dy = b.getDeltaY();
 		b.accelerate(ddx, ddy);
@@ -73,7 +73,7 @@ public class BallTest {
 	}
 
 
-	public void moveToProperty(Ball b, double x, double y) {
+	private void moveToProperty(Ball b, double x, double y) {
 		b.moveTo(x, y);
 		assertEquals(x, b.getX(), DELTA);
 		assertEquals(y, b.getY(), DELTA);
@@ -87,7 +87,7 @@ public class BallTest {
 	}
 
 
-	public void stepProperty(Ball b) {
+	private void stepProperty(Ball b) {
 		double x = b.getX();
 		double y = b.getY();
 		double dx = b.getDeltaX();
@@ -104,7 +104,7 @@ public class BallTest {
 		}
 	}
 
-	public void haltProperty(Ball b) {
+	private void haltProperty(Ball b) {
 		b.halt();
 		assertEquals(0.0, b.getDeltaX(), 0.0);
 		assertEquals(0.0, b.getDeltaY(), 0.0);

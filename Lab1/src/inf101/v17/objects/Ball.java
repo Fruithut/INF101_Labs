@@ -5,7 +5,7 @@ import javafx.scene.paint.Paint;
 /**
  * A class to represent bouncing balls
  */
-public class Ball {
+class Ball {
 	/** Color of the ball's surface */
 	private Paint color;
 
@@ -33,7 +33,7 @@ public class Ball {
 	 * @param radius
 	 *            The radius
 	 */
-	public Ball(Paint color, double radius, BallDemo demo) {
+	Ball(Paint color, double radius, BallDemo demo) {
 		if (radius < 0) throw new IllegalArgumentException("Radius should not be negative");
 		this.color = color;
 		this.radius = radius;
@@ -51,7 +51,7 @@ public class Ball {
 	 * @param newY
 	 *            New Y position
 	 */
-	public void moveTo(double newX, double newY) {
+	void moveTo(double newX, double newY) {
 		this.xPos = newX;
 		this.yPos = newY;
 	}
@@ -59,56 +59,56 @@ public class Ball {
 	/**
 	 * @return Current X position
 	 */
-	public double getX() {
+	double getX() {
 		return this.xPos;
 	}
 
 	/**
 	 * @return Current Y position
 	 */
-	public double getY() {
+	double getY() {
 		return this.yPos;
 	}
 
 	/**
 	 * @return Current X movement
 	 */
-	public double getDeltaX() {
+	double getDeltaX() {
 		return this.deltaX;
 	}
 
 	/**
 	 * @return Current Y movement
 	 */
-	public double getDeltaY() {
+	double getDeltaY() {
 		return this.deltaY;
 	}
 
 	/**
 	 * @return The ball's radius
 	 */
-	public double getRadius() {
+	double getRadius() {
 		return radius;
 	}
 
 	/**
 	 * @return The ball's width (normally 2x {@link #getRadius()})
 	 */
-	public double getWidth() {
+	double getWidth() {
 		return radius * 2;
 	}
 
 	/**
 	 * @return The ball's height (normally 2x {@link #getRadius()})
 	 */
-	public double getHeight() {
+	double getHeight() {
 		return radius * 2;
 	}
 
 	/**
 	 * @return Paint/color for the ball
 	 */
-	public Paint getColor() {
+	Paint getColor() {
 		return color;
 	}
 
@@ -118,7 +118,7 @@ public class Ball {
 	 * For each time step, the ball's (xPos,yPos) position should change by
 	 * (deltaX,deltaY).
 	 */
-	public void step() {
+	void step() {
         steps++;
         this.xPos += deltaX;
         this.yPos += deltaY;
@@ -138,7 +138,7 @@ public class Ball {
 	 * @param ddy
 	 *            Change to deltaY
 	 */
-	public void accelerate(double ddx, double ddy) {
+	void accelerate(double ddx, double ddy) {
 		this.deltaX += ddx;
 		this.deltaY += ddy;
 	}
@@ -156,7 +156,7 @@ public class Ball {
 	 * @param bounceX X-distance the ball needs to move in order to not overlap with the object it hit
 	 * @param bounceY Y-distance the ball needs to move in order to not overlap with the object it hit
 	 */
-	public void hit(double bounceX, double bounceY) {
+	void hit(double bounceX, double bounceY) {
 
 		this.xPos += bounceX;
 		this.yPos += bounceY;
@@ -173,7 +173,7 @@ public class Ball {
 	/**
 	 * Stop the ball. (Sets deltaX/deltaY to 0) 
 	 */
-	public void halt() {
+	void halt() {
 		this.deltaX = 0.0;
 		this.deltaY = 0.0;
 	}
